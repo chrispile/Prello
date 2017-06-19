@@ -1,0 +1,35 @@
+input {
+	background-color: #dbdde0;
+	width: 100%;
+	padding: 15px 20px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+h1 {
+  color: #434444;
+  font-family: Arial;
+}
+
+form {
+  font-family: Arial;
+  color: #434444;
+}
+
+#regdiv {
+	margin: 0 auto;
+	width: 500px;
+}
+
+button {
+  background-color: #24a02d;
+  border: none;
+  padding: 15px 80px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  border-radius: 5px;
+}
