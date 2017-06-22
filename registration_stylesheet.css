@@ -1,3 +1,7 @@
+body {
+	font-family: Arial;
+}
+
 input {
 	background-color: #dbdde0;
 	width: 100%;
@@ -7,20 +11,24 @@ input {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+	font-size: 20px;
 }
 
 h1 {
   color: #434444;
-  font-family: Arial;
 }
 
 form {
-  font-family: Arial;
   color: #434444;
 }
 
 #regdiv {
-	margin: 0 auto;
+	margin: 10 auto;
+	width: 500px;
+}
+
+#logindiv {
+	margin: 40 auto;
 	width: 500px;
 }
 
@@ -28,7 +36,6 @@ button {
   background-color: #24a02d;
   border: none;
   padding: 15px 80px;
-  font-family: Arial;
   color: #ffffff;
   font-size: 20px;
   border-radius: 5px;

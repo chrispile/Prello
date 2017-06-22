@@ -1,0 +1,217 @@
+body {
+	margin: 0;
+	overflow-x:scroll;
+	white-space: nowrap;
+	background-color: #3874e0;
+	font-family: Arial;
+}
+
+#nav {
+	background-color: #2853a0;
+	height: 50px;
+	width: 100%;
+	margin-bottom: 10px;
+	position: fixed;
+	top:0px;
+	z-index: 100;
+	display:inline-block;
+}
+
+/*Boards Button*/
+#boardsbutton {
+	float:left;
+	margin-left: 10px;
+	background-color: #5d93ea;
+	color: #ffffff;
+	position: absolute;
+	top: 10px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#boards {
+	background-color: #e8e8e8;
+	width: 300px;
+	display: none;
+	position: fixed;
+}
+
+#boardsbutton:hover #boards {
+	display:block;
+}
+
+#boards ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#boards ul li {
+	padding: 8px 5px;
+	margin: 10px 5px;
+	background-color: #a4c5f9;
+	border-radius: 5px;
+}
+
+#boards p {
+	margin: 15px 10px;
+	color: #adadad;
+}
+
+
+/*Prello*/
+#logo {
+	margin:auto;
+	text-align: center;
+	color: #ffffff;
+	padding: 10px;
+}
+
+
+
+/*Options Button*/
+#optionsButton {
+	float:right;
+	margin-left: 10px;
+	background-color: #5d93ea;
+	color: #ffffff;
+	top: 10px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#options {
+	margin: 10px 10px;
+	background-color: #e8e8e8;
+	width: 300px;
+	display: none;
+	position: fixed;
+	right:0;
+	top: 5px;
+}
+
+#optionsbutton:hover #options {
+	display:block;
+}
+
+#user {
+	margin-top: 10px;
+	text-align: center;
+	color: #5d5f63;
+
+}
+
+#options ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#options ul li {
+	padding: 8px 5px;
+	margin: 10px 5px;
+	color: #5d5f63;
+}
+
+
+/*Board Name*/
+#boardname {
+	margin-left: 30px;
+	color: #ffffff;
+	position: relative;
+	margin-top: 70px;
+}
+
+
+/*List of lists*/
+#listdiv {
+	margin-left: 30px;
+}
+
+
+
+#mainlist {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+
+
+#mainlist li {
+	display: inline-block;
+	background: #e8e8e8;
+	padding:10px;
+	border-radius: 5px;
+	margin: 0 10px;
+	vertical-align: top;
+}
+
+.listname {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#mainlist li:first-child {
+	margin-left: 0;
+}
+
+.cardlist {
+	padding: 0;
+}
+
+#mainlist li ul li:first-child {
+	margin-left: 5px;
+}
+
+#mainlist li ul li {
+	width:200px;
+	background-color: pink;
+	display: block;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 5px;
+}
+
+#card {
+	margin: 30px 30px;
+	padding: 10px;
+	width: 500px;
+	height: 400px;
+	background-color: #ffffff;
+	white-space: normal;
+	border-radius: 5px;
+}
+
+h6 {
+	margin: 0;
+}
+
+#member {
+	width: 30px;
+	height: 30px;
+	background-color: pink;
+	text-align: center;
+	vertical-align: text-top;
+}
+
+#labels {
+	list-style-type: none;
+	margin: 0px;
+	display: inline-flex;
+	padding: 0px;
+
+}
+
+#labels li {
+	background-color: pink;
+	width: 60px;
+	height: 30px;
+	margin: 5px 15px;
+}
+
+#labels li:first-child{
+	margin-left: 0;
+}
+
+p {
+	font-size: 14px;
+}
