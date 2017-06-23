@@ -22,7 +22,7 @@
 
  		<h3 id="logo">Prello</h3> 
 
-   		<div id="optionsbutton">Options
+   		<div id="optionsbutton" class='button'>Options
 		  	<div id="options">
 		  		<div id="user">Chris</div>
 		 		<ul>
@@ -43,60 +43,57 @@
 
  	<div id="listdiv">
  		<ul id="mainlist">
- 			<li class="list">
+<!--  			<li class="list" id="list0">
  				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
+ 				<ul class="cardlist" id="cardlist0">
+ 					<li class="cardpreview" data-cardindex="0">Card</li>
  				</ul>
+ 				<div class="addcard" data-listIndex="0">Add a card...</div>
  			</li>
- 			<li class="list">
-  				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
- 				</ul>
- 			</li>
- 			<li class="list">
- 				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
- 				</ul>
- 			</li>
-  			<li class="list">
- 				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
- 					<li>Card</li>
- 					<li>Card</li>
- 				</ul>
- 			</li>
- 			<li class="list">
-  				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
- 				</ul>
- 			</li>
- 			<li class="list">
- 				<div class="listname">ListName</div>
- 				<ul class="cardlist">
- 					<li>Card</li>
- 				</ul>
- 			</li>
- 		</ul>
 
+ 			<li class="list" id="list1">
+  				<div class="listname">ListName</div>
+ 				<ul class="cardlist" id="cardlist1">
+ 					<li class="cardpreview" data-cardindex="0">Card</li>
+ 				</ul>
+  				<div class="addcard" data-listIndex="1">Add a card...</div>
+ 			</li>
+ -->
+ 			<li class="list" id="addlist" data-listIndex="2">Add a list</li>
+ 		</ul>
  	</div>
 
- 	<div id="card">
- 		<h3>Card Title</h3>
- 		<h6>Members</h6>
- 		<div id="member"></div>
- 		<h6>Labels</h6>
- 		<ul id="labels">
- 			<li id="label1"></li>
- 			<li id="label2"></li>
- 		</ul>
- 		<h6>Description</h6>
- 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in interdum felis. Phasellus bibendum lacus quis nisi scelerisque vehicula. Pellentesque massa nisl, eleifend non nunc sit amet, ullamcorper posuere lacus. Fusce dignissim lacus et erat ornare aliquet. Donec sodales magna commodo iaculis iaculis.</p>
+
+ <!-- Card 	 -->
+ 	<div id="mymodal" class="cardmodal">
+	 	<div class="card">
+	 		<h3></h3>
+	 		<h6>Members</h6>
+	 		<div class="member"></div>
+	 		<h6>Labels</h6>
+	 		<ul class="labels">
+	 			<li id="label1"></li>
+	 		</ul>
+	 		<h6>Description</h6>
+	 		<p></p>
+<!-- 	 		<h3>Card Title</h3>
+	 		<h6>Members</h6>
+	 		<div class="member"></div>
+	 		<h6>Labels</h6>
+	 		<ul class="labels">
+	 			<li id="label1"></li>
+	 			<li id="label2"></li>
+	 		</ul>
+	 		<h6>Description</h6>
+	 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in interdum felis. Phasellus bibendum lacus quis nisi scelerisque vehicula. Pellentesque massa nisl, eleifend non nunc sit amet, ullamcorper posuere lacus. Fusce dignissim lacus et erat ornare aliquet. Donec sodales magna commodo iaculis iaculis.</p> -->
+	 		<button type="button" id="deleteCard">Delete Card</button>
+	 	</div>
  	</div>
 
 </body>
 </html>
+
+<script type="text/javascript" src="board.js"></script>
+
+
+<!-- &#10006 -->

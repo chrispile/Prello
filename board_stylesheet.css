@@ -19,7 +19,7 @@ body {
 
 /*Boards Button*/
 #boardsbutton {
-	float:left;
+	left: 0;
 	margin-left: 10px;
 	background-color: #5d93ea;
 	color: #ffffff;
@@ -36,11 +36,11 @@ body {
 	position: fixed;
 }
 
-#boardsbutton:hover #boards {
+#boardsbutton:hover #boards, #optionsbutton:hover #options{
 	display:block;
 }
 
-#boards ul {
+#boards ul, #options ul {
 	padding: 0;
 	list-style-type: none;
 }
@@ -70,8 +70,9 @@ body {
 
 /*Options Button*/
 #optionsButton {
-	float:right;
-	margin-left: 10px;
+	position: absolute;
+	right: 0;
+	margin-right: 10px;
 	background-color: #5d93ea;
 	color: #ffffff;
 	top: 10px;
@@ -89,27 +90,21 @@ body {
 	top: 5px;
 }
 
-#optionsbutton:hover #options {
-	display:block;
-}
 
 #user {
 	margin-top: 10px;
 	text-align: center;
 	color: #5d5f63;
-
 }
 
-#options ul {
-	padding: 0;
-	list-style-type: none;
-}
 
 #options ul li {
 	padding: 8px 5px;
 	margin: 10px 5px;
 	color: #5d5f63;
 }
+
+
 
 
 /*Board Name*/
@@ -126,19 +121,16 @@ body {
 	margin-left: 30px;
 }
 
-
-
+/*list of list*/
 #mainlist {
 	margin:0;
 	padding:0;
 	list-style-type: none;
 }
 
-
-
-#mainlist li {
+.list { 
 	display: inline-block;
-	background: #e8e8e8;
+	background: #dbdbdb;
 	padding:10px;
 	border-radius: 5px;
 	margin: 0 10px;
@@ -150,42 +142,68 @@ body {
 	font-size: 16px;
 }
 
-#mainlist li:first-child {
+.list:first-child {
 	margin-left: 0;
 }
 
+/*cardlist in the list*/
 .cardlist {
 	padding: 0;
 }
 
-#mainlist li ul li:first-child {
+#mainlist .cardpreview:first-child {
 	margin-left: 5px;
 }
 
-#mainlist li ul li {
+#mainlist .cardpreview {
 	width:200px;
-	background-color: pink;
+	background-color: #f2f2f2;
 	display: block;
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px 5px;
 }
 
-#card {
-	margin: 30px 30px;
-	padding: 10px;
-	width: 500px;
-	height: 400px;
-	background-color: #ffffff;
-	white-space: normal;
-	border-radius: 5px;
+#mainlist .cardpreview:hover, .addcard:hover, #addlist:hover {
+	background-color: #adadad;
 }
 
-h6 {
+
+
+
+
+
+/*Card*/
+.cardmodal {
+	display: none;
+	position: fixed;
+	z-index: 101;
+	left: 0;
+	right:0;
+	top: 0;
+	bottom: 0;
+	width: 100%
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.card {
+	padding: 10px;
+	width: 60%;
+	background-color: #fefefe;
+	white-space: normal;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.card h6 {
 	margin: 0;
 }
 
-#member {
+.card .member {
 	width: 30px;
 	height: 30px;
 	background-color: pink;
@@ -193,7 +211,7 @@ h6 {
 	vertical-align: text-top;
 }
 
-#labels {
+.card .labels {
 	list-style-type: none;
 	margin: 0px;
 	display: inline-flex;
@@ -201,17 +219,25 @@ h6 {
 
 }
 
-#labels li {
+.labels li {
 	background-color: pink;
 	width: 60px;
 	height: 30px;
 	margin: 5px 15px;
 }
 
-#labels li:first-child{
+.labels li:first-child{
 	margin-left: 0;
 }
 
-p {
+.card p {
 	font-size: 14px;
+}
+
+
+#deleteCard {
+	border-style: none;
+	background-color: #912121;
+	color: #ffffff;
+	border-radius: 5px;
 }
