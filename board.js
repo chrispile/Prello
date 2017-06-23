@@ -305,19 +305,19 @@ function addLabel(e) {
 	var label = document.createElement("li");
 	var color = e.target.dataset.color
 	label.style.backgroundColor = color;
+	var addlabel = document.getElementById("addLabels");
 
-	var childlabels = labelslist.childNodes;
+	var listIndex = addlabel.dataset.listindex;
+	var cardIndex = addlabel.dataset.cardindex;
+
+	var childlabels = listoflists[listIndex].cards[cardIndex].labels;
 	for(var i = 0; i < childlabels.length; i++) {
-		if(color == childlabels[i].dataset.color) {
+		if(color == childlabels[i]) {
 			return;
 		}
 	}
 	labelslist.appendChild(label);
-
-	var addlabel = document.getElementById("addLabels");
-	var listIndex = addlabel.dataset.listindex;
-	var cardIndex = addlabel.dataset.cardindex;
-	listoflists[listIndex].cards[cardIndex].labels.push(color);
+	childlabels.push(color);
 
 	var labelchooser = document.getElementById("labelchooser");
 	labelchooser.style.display = "none";
