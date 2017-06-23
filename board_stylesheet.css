@@ -164,7 +164,7 @@ body {
 	margin: 10px 5px;
 }
 
-#mainlist .cardpreview:hover, .addcard:hover, #addlist:hover {
+#mainlist .cardpreview:hover, .addcard:hover, #addlist:hover, .deleteList:hover {
 	background-color: #adadad;
 }
 
@@ -187,7 +187,7 @@ body {
 	background-color: rgba(0,0,0,0.4);
 }
 
-.card {
+#card {
 	padding: 10px;
 	width: 60%;
 	background-color: #fefefe;
@@ -199,45 +199,118 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.card h6 {
+#cardtitle {
+	margin: 10px 0;
+}
+
+#card h6 {
 	margin: 0;
 }
 
-.card .member {
+#memberslist {
+	display:inline-flex;
+	width: 100%;
+	padding: 0;
+	margin: 5px 0 10px 0;
+	list-style-type: none;
+}
+
+.member:first-child {
+	margin-left: 0;
+}
+
+.member {
 	width: 30px;
 	height: 30px;
 	background-color: pink;
 	text-align: center;
 	vertical-align: text-top;
+	margin: 0 5px;
 }
 
-.card .labels {
+ #labels {
 	list-style-type: none;
-	margin: 0px;
+	margin: 5px 0 10px 0;
 	display: inline-flex;
 	padding: 0px;
 
 }
 
-.labels li {
-	background-color: pink;
-	width: 60px;
-	height: 30px;
-	margin: 5px 15px;
+#labels li {
+	width: 50px;
+	height: 25px;
+	margin: 0 5px;
+	border-radius: 5px;
 }
 
-.labels li:first-child{
+#labels li:first-child{
 	margin-left: 0;
 }
 
-.card p {
+
+
+#carddesc{
 	font-size: 14px;
+	margin: 5px 0 10px 0;
 }
 
 
-#deleteCard {
+#deleteCard, #addlabels{
+	margin-top: 10px;
 	border-style: none;
-	background-color: #912121;
-	color: #ffffff;
+	background-color:#dbdbdb;
 	border-radius: 5px;
+}
+
+#addlabels {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+#deleteCard:hover, #addlabels:hover, .deflabel:hover{
+	background-color: #3874e0;
+	color: #ffffff;
+}
+
+
+
+#labelchooser {
+	list-style-type: none;
+	display:none;
+	z-index: 102; 
+}
+
+.addCard {
+	margin-top: 10px;
+	width: 230px;
+}
+
+.deleteList {
+	position: absolute;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 210;
+}
+
+#comments {
+	font-size: 14px;
+	padding-left: 15px;
+	margin: 5px 0 0 0;
+}
+
+#comments li {
+	margin: 0 0 10px 0;
+}
+
+.deflabel {
+	width: 50px;
+	height: 25px;
+	margin: 0 5px;
+	border-radius: 5px;
+}
+
+
+
+#deflabel li:first-child{
+	margin-left: 0;
 }
