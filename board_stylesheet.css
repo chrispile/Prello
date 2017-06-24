@@ -1,162 +1,247 @@
+/*Color Reference
+Dark Cyan: #047ABA
+Teal: #04446C
+White Smoke: #EBEBEB;
+Steel Blue: #5D9FC1;
+Dark Olive Green: #579547;
+*/
 body {
 	margin: 0;
-	overflow-x:scroll;
+	overflow-x: scroll;
 	white-space: nowrap;
-	background-color: #3874e0;
+	background-color: #0079bf;
 	font-family: Arial;
 }
 
+/*Navigation*/
 #nav {
-	background-color: #2853a0;
+	background-color: #006699;
 	height: 50px;
 	width: 100%;
 	margin-bottom: 10px;
 	position: fixed;
-	top:0px;
+	top: 0px;
 	z-index: 100;
-	display:inline-block;
+	display: inline-block;
 }
 
-/*Boards Button*/
-#boardsbutton {
-	left: 0;
-	margin-left: 10px;
-	background-color: #5d93ea;
-	color: #ffffff;
+/*Menu Classes*/
+.menuButton {
 	position: absolute;
+	color: #ffffff;
 	top: 10px;
 	padding: 5px;
 	border-radius: 5px;
+	background-color: #3399cc;
 }
 
-#boards {
-	background-color: #e8e8e8;
+.menu {
+	background-color: #EBEBEB; 
 	width: 300px;
 	display: none;
 	position: fixed;
+	border-radius: 5px;
+	margin-top: 5px;
+	box-shadow: 0 0 7px #888888;
 }
 
-#boardsbutton:hover #boards, #optionsbutton:hover #options{
-	display:block;
-}
-
-#boards ul, #options ul {
+.menuButton ul {
 	padding: 0;
 	list-style-type: none;
 }
 
-#boards ul li {
+/*Boards Button and Menu*/
+#boardsButton {
+	left: 0;
+	margin-left: 10px;
+}
+
+#boardsMenu {
+	left: 0;
+	margin-left: 10px;
+}
+
+#boardsMenu ul li {
 	padding: 8px 5px;
 	margin: 10px 5px;
-	background-color: #a4c5f9;
+	background-color: #5D9FC1;
 	border-radius: 5px;
 }
 
-#boards p {
+#boardsMenu p {
 	margin: 15px 10px;
-	color: #adadad;
+	color: #5d5f63;
+	font-size: 16px;
 }
 
-
-/*Prello*/
-#logo {
-	margin:auto;
-	text-align: center;
-	color: #ffffff;
-	padding: 10px;
-}
-
-
-
-/*Options Button*/
-#optionsButton {
-	position: absolute;
-	right: 0;
-	margin-right: 10px;
-	background-color: #5d93ea;
-	color: #ffffff;
-	top: 10px;
-	padding: 5px;
-	border-radius: 5px;
-}
-
-#options {
-	margin: 10px 10px;
-	background-color: #e8e8e8;
-	width: 300px;
-	display: none;
-	position: fixed;
-	right:0;
-	top: 5px;
-}
-
-
+/*Options Button and Menu*/
 #user {
 	margin-top: 10px;
 	text-align: center;
 	color: #5d5f63;
 }
 
+#optionsButton {
+	right: 0;
+	margin-right: 10px;
+}
 
-#options ul li {
+#optionsMenu {
+	right: 0;
+}
+
+#optionsMenu ul li {
 	padding: 8px 5px;
 	margin: 10px 5px;
 	color: #5d5f63;
 }
 
+#boardsButton:hover #boardsMenu, #optionsButton:hover #optionsMenu {
+	display: block;
+}
 
-
+/*Prello Logo*/
+#logo {
+	margin: auto;
+	text-align: center;
+	color: #ffffff;
+	padding: 10px;
+}
 
 /*Board Name*/
-#boardname {
-	margin-left: 30px;
+#boardName {
 	color: #ffffff;
 	position: relative;
-	margin-top: 70px;
+	margin: 70px 0 10px 30px;
 }
-
 
 /*List of lists*/
-#listdiv {
+#listDiv {
 	margin-left: 30px;
-}
-
-/*list of list*/
-#mainlist {
-	margin:0;
-	padding:0;
-	list-style-type: none;
-}
-
-.list { 
 	display: inline-block;
-	background: #dbdbdb;
-	padding:10px;
-	border-radius: 5px;
-	margin: 0 10px;
+}
+
+#outerList {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: inline-block;
 	vertical-align: top;
 }
 
-.listname {
-	font-weight: bold;
-	font-size: 16px;
+/*Individual List*/
+.list { 
+	display: inline-block;
+	background: #e2e4e6;
+	border-radius: 5px;
+	margin: 0 10px;
+	vertical-align: top;
+	width: 240px;
 }
 
 .list:first-child {
 	margin-left: 0;
 }
 
-/*cardlist in the list*/
-.cardlist {
-	padding: 0;
+.listName {
+	font-color: #363636;
+	font-weight: bold;
+	font-size: 16px;
+	display: inline-block;
+	margin: 10px 0 0 12px;
 }
 
-#mainlist .cardpreview:first-child {
-	margin-left: 5px;
+#addListDiv {
+	display:inline-block;
+	vertical-align: top;
+	z-index: 102;
 }
 
-#mainlist .cardpreview {
-	width:200px;
+
+#listForm {
+	display: inline-block;
+	width: 100%;
+}
+
+#newList {
+	z-index: 102;
+	background-color:pink;
+	width: 200px;
+	margin: 0 auto;
+}
+
+
+#addListSpan {
+	color: #a4cae0;
+	display: inline-block;
+	/*display: none;*/
+	margin: 0;
+	position: absolute;
+	padding: 10px 5px 10px 15px;
+	border-radius: 5px;
+	width: 220px;
+	height: 20px;
+	background-color: #006699;
+}
+
+#addList {
+	/*display: inline-block;*/
+	display: none;
+	border-radius: 5px;
+	width: 240px;
+	font-size: 16px;
+	height: 80px;	
+	border: none;
+	text-align:left;
+	background-color: #006699;
+}
+
+form {
+	margin: 0;
+	border-radius: 5px;
+	height: 80px;
+	display: block;
+}
+
+
+#listInput {
+	/*display: block*/
+	border:none;
+	padding-left: 5px;
+	margin: 0;
+	width: 220px;
+	margin: 5px 10px;
+	position: absolute;
+	height: 36px;
+	border-radius: 5px;
+	font-size: 16px;
+	background-color: #e2e4e6 ;
+}
+
+#listSubmit {
+	display: block;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 10px;
+	border: none;
+	font-size: 16px;
+	padding: 4px 15px;
+	font-weight: bold;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: #579547;
+}
+
+
+
+/*Card Previews/Inner List*/
+.cardList {
+	padding: 0 5px;
+}
+
+.cardList li {
+	color: #363636;
+	width: 200px;
 	background-color: #f2f2f2;
 	display: block;
 	border-radius: 5px;
@@ -164,17 +249,47 @@ body {
 	margin: 10px 5px;
 }
 
-#mainlist .cardpreview:hover, .addcard:hover, #addlist:hover, .deleteList:hover {
+.cardList li:first-child {
+	margin-left: 5px;
+}
+
+.cardList li:last-child {
+	margin-bottom: 0;
+}
+
+.cardList li:hover, .addcard:hover, .deleteList:hover {
 	background-color: #adadad;
 }
 
+#addList:hover {
+	background-color: #015887;
+}
 
+.cardList li h4 {
+	margin: 0;
+}
 
+/*Add New Card Button*/
+.addCard {
+	height: 35px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 12px;
+}
 
-
+/*Delete List Button*/
+.deleteList {
+	display: inline-block;
+	float: right;
+	margin-top: 3px;
+	margin-right: 10px;
+}
 
 /*Card*/
-.cardmodal {
+#cardModal {
 	display: none;
 	position: fixed;
 	z-index: 101;
@@ -199,7 +314,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-#cardtitle {
+#cardTitle {
 	margin: 10px 0;
 }
 
@@ -207,8 +322,9 @@ body {
 	margin: 0;
 }
 
-#memberslist {
-	display:inline-flex;
+/*Members*/
+#membersList {
+	display: inline-flex;
 	width: 100%;
 	padding: 0;
 	margin: 5px 0 10px 0;
@@ -228,6 +344,7 @@ body {
 	margin: 0 5px;
 }
 
+/*Labels*/
  #labels {
 	list-style-type: none;
 	margin: 5px 0 10px 0;
@@ -243,55 +360,40 @@ body {
 	border-radius: 5px;
 }
 
-#labels li:first-child{
+#labels li:first-child {
 	margin-left: 0;
 }
 
-
-
-#carddesc{
-	font-size: 14px;
-	margin: 5px 0 10px 0;
-}
-
-
-#deleteCard, #addlabels{
-	margin-top: 10px;
-	border-style: none;
-	background-color:#dbdbdb;
-	border-radius: 5px;
-}
-
-#addlabels {
+/*Label Chooser*/
+#addLabelsButton {
 	margin-top: 0;
 	margin-bottom: 10px;
 }
 
-#deleteCard:hover, #addlabels:hover, .deflabel:hover{
-	background-color: #3874e0;
-	color: #ffffff;
-}
-
-
-
-#labelchooser {
+#labelChooser {
 	list-style-type: none;
-	display:none;
+	display: none;
 	z-index: 102; 
 }
 
-.addCard {
-	margin-top: 10px;
-	width: 230px;
+.defLabel {
+	width: 50px;
+	height: 25px;
+	margin: 0 5px;
+	border-radius: 5px;
 }
 
-.deleteList {
-	position: absolute;
-	overflow: hidden;
-	display: inline-block;
-	margin-left: 210;
+#defLabel li:first-child {
+	margin-left: 0;
 }
 
+/*Description*/
+#desc {
+	font-size: 14px;
+	margin: 5px 0 10px 0;
+}
+
+/*Comments*/
 #comments {
 	font-size: 14px;
 	padding-left: 15px;
@@ -302,15 +404,16 @@ body {
 	margin: 0 0 10px 0;
 }
 
-.deflabel {
-	width: 50px;
-	height: 25px;
-	margin: 0 5px;
+/*Card Buttons*/
+.cardButtons {
+	margin-top: 10px;
+	border-style: none;
+	background-color: #dbdbdb;
 	border-radius: 5px;
 }
 
-
-
-#deflabel li:first-child{
-	margin-left: 0;
+.cardButton:hover, .deflabel:hover {
+	background-color: #3874e0;
+	color: #ffffff;
 }
+

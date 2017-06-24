@@ -6,8 +6,8 @@
 <body>
 <!-- Navigation Bar -->
  	<div id="nav">
-  		<div id="boardsbutton">Boards
-		  	<div id="boards"> 
+  		<div id="boardsButton" class='menuButton'>Boards
+		  	<div class='menu' id="boardsMenu"> 
 		 		<ul>
 		 			<li>Board 1</li>
 		 			<li>Board 2</li>
@@ -20,11 +20,9 @@
 		 		<p>See closed boards...</p>
 		 	</div>
 		</div>
-
  		<h3 id="logo">Prello</h3> 
-
-   		<div id="optionsbutton" class='button'>Options
-		  	<div id="options">
+   		<div id="optionsButton" class='menuButton'>Options
+		  	<div class='menu' id="optionsMenu">
 		  		<div id="user">Chris</div>
 		 		<ul>
 		 			<li>Profile</li>
@@ -39,43 +37,51 @@
 		</div>
  	</div>
 
- 	<h3 id="boardname"> Board Name </h3>
+<!-- Board Name -->
+ 	<h3 id="boardName">Board Name</h3>
 
 <!-- Boards -->
- 	<div id="listdiv">
- 		<ul id="mainlist">
- 			<li class="list" id="addlist" data-listIndex="0">Add a list</li>
- 		</ul>
+ 	<div id="listDiv">
+ 		<ul id="outerList"></ul>
+	 	<span id="addListSpan">Add a list...</span>
+ 		<div id="addList">
+ 			<form id="listForm">
+	 			<input type="text" id="listInput" placeholder="Add a list..." autocomplete="off">
+		 		<input type="button" value="Save" id="listSubmit">
+ 			</form>
+ 		</div>
  	</div>
 
+
 <!-- Card Modal -->
- 	<div id="mymodal" class="cardmodal">
+ 	<div id="cardModal">
 	 	<div id="card">
-	 		<h3 id = "cardtitle"></h3>
+	 		<h3 id = "cardTitle"></h3>
 	 		<h6>Members</h6>
-	 		<ul id="memberslist"></ul>
+	 		<ul id="membersList"></ul>
 	 		<h6>Labels</h6>
-	 		<ul id="labels">
-	 		</ul>
-	 		<div id="addlabeldiv">
-	 			<button type="button" id="addLabels">Add Label</button>
-	 			<div id="labelchooser">
-	 				<li class="deflabel" data-color="blue"></ul>
-	 				<li class="deflabel" data-color="green"></ul>
-	 				<li class="deflabel" data-color="red"></ul>
-	 				<li class="deflabel" data-color="pink"></ul>
-	 				<li class="deflabel" data-color="purple"></ul>
+	 		<ul id="labels"></ul>
+	 		<div>
+	 			<button type="button" id="addLabelsButton" class="cardButton">Add Label</button>
+	 			<div id="labelChooser">
+	 				<li class="defLabel" data-color="blue"></ul>
+	 				<li class="defLabel" data-color="green"></ul>
+	 				<li class="defLabel" data-color="red"></ul>
+	 				<li class="defLabel" data-color="pink"></ul>
+	 				<li class="defLabel" data-color="purple"></ul>
 	 			</div>
 	 		</div>
 	 		<h6>Description</h6>
-	 		<p id = "carddesc"></p>
+	 		<p id="desc"></p>
 	 		<h6>Comments</h6>
 	 		<ul id="comments"></ul>
-	 		<button type="button" id="deleteCard">Delete Card</button>
+	 		<button type="button" id="deleteCard" class="cardButton">Delete Card</button>
 	 	</div>
  	</div>
 
+	<script src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="board.js"></script>
 </body>
 </html>
 
-<script type="text/javascript" src="board.js"></script>
+<!-- implement list using flexbox
