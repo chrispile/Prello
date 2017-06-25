@@ -64,7 +64,7 @@ var updateCardList = function(listIndex, cardsUl) {
 	for(var cardIndex = 0; cardIndex < mainList[listIndex].cards.length; cardIndex++) {
 		var card = cardList[cardIndex];
       	var cardLi = $('<li/>').attr('data-cardindex', cardIndex).attr('data-listindex', listIndex);
-		var cardTitle = $('<h4>').html(card.title);
+		var cardTitle = $('<h4>').addClass('cardTitle').html(card.title);
 		cardLi.append(cardTitle);
 		cardsUl.append(cardLi);
 	}

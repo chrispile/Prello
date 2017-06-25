@@ -1,10 +1,3 @@
-/*Color Reference
-Dark Cyan: #047ABA
-Teal: #04446C
-White Smoke: #EBEBEB;
-Steel Blue: #5D9FC1;
-Dark Olive Green: #579547;
-*/
 body {
 	margin: 0;
 	overflow-x: scroll;
@@ -303,6 +296,9 @@ form {
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px 5px;
+	overflow: hidden;
+	min-height: 23px;
+	white-space: nowrap;
 }
 
 .cardList li:first-child {
@@ -321,8 +317,11 @@ form {
 	background-color: #015887;
 }
 
-.cardList li h4 {
+.cardList li .cardTitle {
 	margin: 0;
+	word-wrap: break-word;
+	white-space: pre-line;
+
 }
 
 
