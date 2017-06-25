@@ -203,9 +203,7 @@ form {
 	display: block;
 }
 
-
-#listInput {
-	/*display: block*/
+.cardInput{
 	border:none;
 	padding-left: 5px;
 	margin: 0;
@@ -215,10 +213,23 @@ form {
 	height: 36px;
 	border-radius: 5px;
 	font-size: 16px;
-	background-color: #e2e4e6 ;
+	background-color: #ffffff;
 }
 
-#listSubmit {
+#listInput{
+	border:none;
+	padding-left: 5px;
+	margin: 0;
+	width: 220px;
+	margin: 5px 10px;
+	position: absolute;
+	height: 36px;
+	border-radius: 5px;
+	font-size: 16px;
+	background-color: #e2e4e6;
+}
+
+#listSubmit, #cardSubmit{
 	display: block;
 	position: absolute;
 	margin-top: 45px;
@@ -231,6 +242,51 @@ form {
 	color: #ffffff;
 	background-color: #579547;
 }
+
+.submitCard{
+	display: block;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 10px;
+	border: none;
+	font-size: 16px;
+	padding: 4px 15px;
+	font-weight: bold;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: #579547;
+}
+
+
+/*Add card*/
+
+.addCard { /*button*/
+	height: 35px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 12px;
+	display:block;
+}
+
+
+.addCardDiv {
+	/*display: block;*/
+	display: none;
+	border-radius: 5px;
+	width: 240px;
+	font-size: 16px;
+	height: 80px;	
+	border: none;
+	text-align:left;
+	background-color: #e2e4e6;
+	margin-top: 5px;
+}
+
+
+
 
 
 
@@ -269,16 +325,6 @@ form {
 	margin: 0;
 }
 
-/*Add New Card Button*/
-.addCard {
-	height: 35px;
-	width: 100%;
-	border: none;
-	border-radius: 5px;
-	font-size: 14px;
-	text-align: left;
-	padding-left: 12px;
-}
 
 /*Delete List Button*/
 .deleteList {

@@ -31,15 +31,18 @@ var lol;
 $(function() {
 	lol = $('#outerList');
 	loadMainList();
-
 	$('#addListSpan').click(showInput);
 	$('#listSubmit').click(submitInput);
 	$('#listForm').submit(function(e) {
 		event.preventDefault();
 	});
-
+	$('.cardForm').submit(function(e) {
+		event.preventDefault();
+	});
 	lol.on('click', '.deleteList', deleteList);
 	lol.on('click', '.cardList li', showModal);
+	lol.on('click', '.addCard', showCardInput);
+	lol.on('click', '.submitCard', submitCard);
 	$('#cardModal').click(hideModal);
 	$('#deleteCard').click(deleteCard);
 });
@@ -74,7 +77,13 @@ var createList = function(listIndex) {
 	var cardsUl = $('<ul/>').addClass('cardList');
 	updateCardList(listIndex, cardsUl);
 	var addCardButton = $('<button/>').html('Add a card...').addClass('addCard');
-	listLi.append(titleDiv).append(deleteListButton).append(cardsUl).append(addCardButton);
+	var addCardDiv = $('<div/>').addClass('addCardDiv');
+	var cardForm = $('<form/>').addClass('cardForm');
+	var cardInput = $('<input/>').addClass('cardInput').attr('type','text').attr('autocomplete', 'off');
+	var addInput = $('<input/>').attr('type','submit').attr('value','Add').addClass('submitCard');
+	cardForm.append(cardInput).append(addInput);
+	addCardDiv.append(cardForm);
+	listLi.append(titleDiv).append(deleteListButton).append(cardsUl).append(addCardButton).append(addCardDiv);
 	return listLi;
 }
 
@@ -101,13 +110,45 @@ var addList = function(listTitle) {
 	lol.append(listLi);
 }
 
-var deleteList = function(event) {
-	var li = $(this).parent();
-	var listIndex = li.attr('data-listindex');
-	mainList.splice(listIndex, 1);
+//addCardHelpers
+var showCardInput = function(event) {
+	$(this).css("display", "none");
+	var parent = $(this).parent();
+	var form = $(parent).find('> .addCardDiv');
+	$(form).css("display", "block");
+}
+
+var submitCard = function(event) {
+	var parent = $(this).parent();
+	var input = $(parent).find('> .cardInput');
+	var inputValue = $(input).val();
+	$(input).val();
+	$(input).val('');
+	var cardDiv = $(parent).parent();
+	var list = $(cardDiv).parent();
+	var listIndex = $(list).attr('data-listindex');
+	addCard(inputValue, listIndex);
+}
+
+
+var addCard = function(title, listIndex) {
+	mainList[listIndex].cards.push({
+		'title': title,
+		description: ''
+	})
 	loadMainList();
 }
 
+var deleteList = function(event) {
+	var li = $(this).parent();
+	var listIndex = li.attr('data-listindex');
+	console.log(mainList);
+	mainList.splice(listIndex, 1);
+	console.log(mainList);
+	loadMainList();
+}
+
+//MODAL METHODS
 var showModal = function(event) {
 	var eventLi = event.currentTarget;
 	var listIndex = $(eventLi).attr('data-listindex');
