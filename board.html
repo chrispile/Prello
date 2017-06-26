@@ -42,27 +42,7 @@
 
 <!-- Boards -->
  	<div id="listDiv">
- 		<ul id="outerList">
-<!--  			<li class="list" data-listindex="0">
- 				<h4 class="listName">Card</h4>
- 				<div class="deleteList">✖</div>
- 				<ul class="cardList">
- 					<li>
- 						<div>okayokayokayokayokayokayoaksdf</div>
- 						<div> what</div>
-
- 					</li>
- 				</ul>
- 				<button class="addCard">Add a card...</button>
- 				<div class="addCardDiv">
-		  			<form class="cardForm">
-			 			<input type="text" class='cardInput' autocomplete="off">
-				 		<input type="submit" value="Add" id="cardSubmit">
-		 			</form>
-		 		</div>
- 			</li> -->
- 		</ul>
-
+ 		<ul id="outerList"></ul>
 	 	<span id="addListSpan">Add a list...</span>
  		<div id="addList">
  			<form id="listForm">
@@ -72,40 +52,40 @@
  		</div>
  	</div>
 
-
-
-
-
-
 <!-- Card Modal -->
- 	<div id="cardModal">
-	 	<div id="card">
-	 		<h3 id = "cardTitle"></h3>
-	 		<h6>Members</h6>
-	 		<ul id="membersList"></ul>
-	 		<h6>Labels</h6>
-	 		<ul id="labels"></ul>
-	 		<div>
-	 			<button type="button" id="addLabelsButton" class="cardButton">Add Label</button>
-	 			<div id="labelChooser">
-	 				<li class="defLabel" data-color="blue"></ul>
-	 				<li class="defLabel" data-color="green"></ul>
-	 				<li class="defLabel" data-color="red"></ul>
-	 				<li class="defLabel" data-color="pink"></ul>
-	 				<li class="defLabel" data-color="purple"></ul>
-	 			</div>
-	 		</div>
-	 		<h6>Description</h6>
-	 		<p id="desc"></p>
-	 		<h6>Comments</h6>
-	 		<ul id="comments"></ul>
-	 		<button type="button" id="deleteCard" class="cardButton">Delete Card</button>
-	 	</div>
+ 	<div id="cardModal"> 	</div>
+	<div id="card">
+ 		<h3 id = "cardTitle"></h3>
+ 		<h6>Members</h6>
+ 		<ul id="membersList"></ul>
+ 		<h6>Labels</h6>
+ 		<ul id="labels"></ul>
+ 		<div id="addLabelsDiv">
+ 			<ul id="labelList"></ul>
+ 			<div id="addLabelsButton">+</div>
+ 		 	<div id="labelDiv">
+		 		<h4>Labels</h4>
+		 		<ul>
+		 			<li data-color="#61bd4f"></li>
+		 			<li data-color="#f2d600"></li>
+		 			<li data-color="#ffab4a"></li>
+		 			<li data-color="#eb5a46"></li>
+		 			<li data-color="#c377e0"></li>
+		 			<li data-color="#0079bf"></li>	
+		 		</ul>
+		 		<div class="label"></div>
+		 	</div>
+ 		</div>
+ 		<h6>Description</h6>
+ 		<p id="desc"></p>
+ 		<h6>Comments</h6>
+ 		<ul id="comments"></ul>
+ 		<button type="button" id="deleteCard" >Delete</button>
  	</div>
+
+
 
 	<script src="jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="board.js"></script>
 </body>
 </html>
-
-<!-- implement list using flexbox

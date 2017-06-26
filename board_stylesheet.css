@@ -28,7 +28,7 @@ body {
 	background-color: #3399cc;
 }
 
-.menu {
+.menu{
 	background-color: #EBEBEB; 
 	width: 300px;
 	display: none;
@@ -89,7 +89,8 @@ body {
 	color: #5d5f63;
 }
 
-#boardsButton:hover #boardsMenu, #optionsButton:hover #optionsMenu {
+/*, #addLabelsButton:hover #labelDiv*/
+#boardsButton:hover #boardsMenu, #optionsButton:hover #optionsMenu{
 	display: block;
 }
 
@@ -150,7 +151,6 @@ body {
 	z-index: 102;
 }
 
-
 #listForm {
 	display: inline-block;
 	width: 100%;
@@ -163,11 +163,9 @@ body {
 	margin: 0 auto;
 }
 
-
 #addListSpan {
 	color: #a4cae0;
 	display: inline-block;
-	/*display: none;*/
 	margin: 0;
 	position: absolute;
 	padding: 10px 5px 10px 15px;
@@ -178,7 +176,6 @@ body {
 }
 
 #addList {
-	/*display: inline-block;*/
 	display: none;
 	border-radius: 5px;
 	width: 240px;
@@ -250,9 +247,7 @@ form {
 	background-color: #579547;
 }
 
-
 /*Add card*/
-
 .addCard { /*button*/
 	height: 35px;
 	width: 100%;
@@ -264,9 +259,7 @@ form {
 	display:block;
 }
 
-
 .addCardDiv {
-	/*display: block;*/
 	display: none;
 	border-radius: 5px;
 	width: 240px;
@@ -309,7 +302,7 @@ form {
 	margin-bottom: 0;
 }
 
-.cardList li:hover, .addcard:hover, .deleteList:hover {
+.cardList li:hover, .addcard:hover, .deleteList:hover, #addLabelsButton:hover {
 	background-color: #adadad;
 }
 
@@ -318,12 +311,11 @@ form {
 }
 
 .cardList li .cardTitle {
-	margin: 0;
+	margin: 3px 0;
 	word-wrap: break-word;
 	white-space: pre-line;
 
 }
-
 
 /*Delete List Button*/
 .deleteList {
@@ -348,6 +340,8 @@ form {
 }
 
 #card {
+	display: none;
+	z-index: 102;
 	padding: 10px;
 	width: 60%;
 	background-color: #fefefe;
@@ -389,49 +383,6 @@ form {
 	margin: 0 5px;
 }
 
-/*Labels*/
- #labels {
-	list-style-type: none;
-	margin: 5px 0 10px 0;
-	display: inline-flex;
-	padding: 0px;
-
-}
-
-#labels li {
-	width: 50px;
-	height: 25px;
-	margin: 0 5px;
-	border-radius: 5px;
-}
-
-#labels li:first-child {
-	margin-left: 0;
-}
-
-/*Label Chooser*/
-#addLabelsButton {
-	margin-top: 0;
-	margin-bottom: 10px;
-}
-
-#labelChooser {
-	list-style-type: none;
-	display: none;
-	z-index: 102; 
-}
-
-.defLabel {
-	width: 50px;
-	height: 25px;
-	margin: 0 5px;
-	border-radius: 5px;
-}
-
-#defLabel li:first-child {
-	margin-left: 0;
-}
-
 /*Description*/
 #desc {
 	font-size: 14px;
@@ -450,15 +401,112 @@ form {
 }
 
 /*Card Buttons*/
-.cardButtons {
+#deleteCard {
 	margin-top: 10px;
 	border-style: none;
-	background-color: #dbdbdb;
+	background-color: #eb5a46;
+	border-radius: 5px;
+	padding: 5px 10px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+}
+
+#deleteCard:hover {
+	background-color: #99392c
+}
+
+/*Labels*/
+ #labels {
+	list-style-type: none;
+	margin: 5px 0 10px 0;
+	display: inline-block;
+	padding: 0px;
+
+}
+
+#labels li {
+	width: 50px;
+	height: 25px;
+	margin: 0 5px;
 	border-radius: 5px;
 }
 
-.cardButton:hover, .deflabel:hover {
-	background-color: #3874e0;
-	color: #ffffff;
+#labels li:first-child {
+	margin-left: 0;
 }
 
+/*Label Chooser*/
+#addLabelsDiv {
+	margin-top: 0;
+	margin-bottom: 10px;
+	display: inline-block;
+	margin-left: 0;
+}
+
+#addLabelsButton {
+	border: none;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	background-color: #e2e4e6;
+	text-align: center;
+	line-height: 30px;
+	display: inline-block;
+}
+
+#labelDiv {
+	width: 280;
+	height: 300;
+	background-color: #e2e4e6;
+	border-radius: 5px;
+	box-shadow: 0 0 7px #888888;
+	display: none;
+	position: fixed;
+}
+
+#labelDiv h4 {
+	text-align: center;
+	margin: 0;
+	padding-top: 10px;
+	color: #363636;
+}
+
+#labelDiv ul {
+	list-style-type: none;
+	padding: 0 20px;
+	margin: 0;
+}
+
+#labelDiv ul li {
+	background-color: pink;
+	margin: 5px 0;
+	width: 240;
+	height: 35;
+	border-radius: 5px;
+}
+
+.cardLabels {
+	margin: 0 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+	display: inline-block;
+	text-align: center;
+	line-height: 30px;
+}
+
+#labelList {
+	margin: 0;
+	display:inline-block;
+	padding: 0;
+}
+
+.labelPreview {
+	width: 30px;
+	height: 8px;
+	border-radius: 5px;
+	display: inline-block;
+	margin-right: 4px;
+}
