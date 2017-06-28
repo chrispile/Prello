@@ -1,32 +1,3 @@
-// var mainList = [
-// 	{
-// 		title: 'List One', 
-// 		cards: [
-// 			{title: 'Card1', description: 'Description 1', colors:[]},
-// 			{title: 'Card2', description: 'Description 2', colors:[]},
-// 			{title: 'Card3', description: 'Description 3', colors:[]},
-// 			{title: 'Card4', description: 'Description 4', colors:[]},
-// 		]
-// 	},
-// 	{
-// 		title: 'List Two', 
-// 		cards: [
-// 			{title: 'Card1', description: 'Description 1', colors:[]},
-// 			{title: 'Card2', description: 'Description 2', colors:[]},
-
-// 		]
-// 	},
-// 	{
-// 		title: 'List Three', 
-// 		cards: [
-// 			{title: 'Card1', description: 'Description 1', colors:[]},
-// 			{title: 'Card2', description: 'Description 2', colors:[]},
-// 			{title: 'Card3', description: 'Description 3', colors:[]},
-// 			{title: 'Card4', description: 'Description 4', colors:[]},
-// 		]
-// 	}
-// ]
-
 var lol;
 var mainList;
 $(function() {
@@ -55,6 +26,26 @@ $(function() {
 	$('#labelDiv ul li').each(labelColors);
 	$('#addLabelsButton').click(showLabels);
 	$('#labelDiv ul li').click(addLabels);
+	$('#closeListForm').click(closeListForm);
+
+	lol.on('click', '.cardForm', function(event) {
+		event.stopPropagation();
+	});
+	$('#addList').click(function(event){
+		event.stopPropagation();
+	});
+	$(document).click(function(){
+		$('#addListSpan').css('display', 'inline-block');
+		$('#addList').css('display', 'none');
+		$('.addCardDiv').css('display', 'none');
+		$('.addCard').css('display', 'block');
+		$('.cardInput').val('');
+		$('#listInput').val('');
+
+	});
+
+	lol.on('click', '.closeCardForm', closeCardForm);
+
 });
 
 var loadData = function() {
@@ -112,7 +103,8 @@ var createList = function(listIndex) {
 	var cardForm = $('<form/>').addClass('cardForm');
 	var cardInput = $('<input/>').addClass('cardInput').attr('type','text').attr('autocomplete', 'off').attr('name', 'cardSubmitName');
 	var addInput = $('<input/>').attr('type','submit').attr('value','Add').addClass('submitCard');
-	cardForm.append(cardInput).append(addInput);
+	var exitInput = $('<div/>').html('&#10006').addClass('closeCardForm');
+	cardForm.append(cardInput).append(addInput).append(exitInput);
 	addCardDiv.append(cardForm);
 	listLi.append(titleDiv).append(deleteListButton).append(cardsUl).append(addCardButton).append(addCardDiv);
 	return listLi;
@@ -121,16 +113,19 @@ var createList = function(listIndex) {
 //Shows input box after clicking on the 'Add a list...' button
 var showInput = function() {
 	$('#addListSpan').css("display", "none");
-	$('#addList').css("display", "inline-block");	
+	$('#addList').css("display", "inline-block");
+	event.stopPropagation();
 }
 
 //Submits the input for the add a list form
 var submitInput = function() {
 	var inputValue = $('#listInput').val();
-	$('#listInput').val('');
-	addList(inputValue);
-	$('#addListSpan').css("display", "inline-block");
-	$('#addList').css("display", "none");
+	if(inputValue != '') {
+		$('#listInput').val('');
+		addList(inputValue);
+		$('#addListSpan').css("display", "inline-block");
+		$('#addList').css("display", "none");
+	}
 }
 
 //Adds a new list to the data structure, and updates UI
@@ -150,10 +145,17 @@ var addList = function(listTitle) {
 
 //Shows input box after clicking "Add a card" button
 var showCardInput = function(event) {
-	$(this).css("display", "none");
 	var parent = $(this).parent();
 	var form = $(parent).find('> .addCardDiv');
+	var open = $("#outerList").find('.addCardDiv');
+	if(open != null) {
+		var parent2 = $(open).parent();
+		$(parent2).find('> .addCard').css('display', 'block');
+		open.css('display', 'none');
+	}
+	$(this).css("display", "none");
 	$(form).css("display", "block");
+	event.stopPropagation();
 }
 
 //Submits the input for the add a card form
@@ -161,14 +163,24 @@ var submitCard = function(event) {
 	var parent = $(this).parent();
 	var input = $(parent).find('> .cardInput');
 	var inputValue = $(input).val();
-	$(input).val();
-	$(input).val('');
-	var cardDiv = $(parent).parent();
-	var list = $(cardDiv).parent();
-	var listIndex = $(list).attr('data-listindex');
-	addCard(inputValue, listIndex);
+	if(inputValue != "") {
+		$(input).val();
+		$(input).val('');
+		var cardDiv = $(parent).parent();
+		var list = $(cardDiv).parent();
+		var listIndex = $(list).attr('data-listindex');
+		addCard(inputValue, listIndex);
+	}
 	return false;
 }
+
+var closeCardForm = function(event) {
+	$('.cardInput').val('');
+	var form = $(this).parent();
+	$($(form).parent()).css('display', 'none');
+	$('.addCard').css('display', 'block');
+}
+
 
 //Adds a new card to the data structure, updates the UI
 var addCard = function(title, listIndex) {
@@ -184,7 +196,6 @@ var addCard = function(title, listIndex) {
 		type:"POST",
 	})
 	.done(function(json) {
-		alert('added!');
 		mainList[listIndex] = json;
 		loadMainList();
 	});
@@ -220,7 +231,6 @@ var deleteList = function(event) {
 		type: 'DELETE'
 	})
 	.done(function() {
-		alert('deleted!');
 		mainList.splice(listIndex, 1);
 		loadMainList();
 
@@ -239,7 +249,6 @@ var deleteCard = function(event) {
 		type: "DELETE"
 	})
 	.done(function(){
-		alert('deleted!');
 		mainList[listIndex].cards.splice(cardIndex, 1);
 		loadMainList();
 		hideModal();
@@ -272,21 +281,12 @@ var addLabels = function() {
 		var cardID = mainList[listIndex].cards[cardIndex]._id;
 		labelArray.push(color);
 		var card =  mainList[listIndex].cards[cardIndex]
-
-
 		$.ajax({
 			url: "http://thiman.me:1337/pilec/list/" + listID + "/card/" + cardID,
 			data: card,
-			// {
-			// 	"title": card.title,
-			// 	"description": card.description,
-			// 	"labels": card.labels,
-			// 	"_id": card._id,
-			// },
 			type: "PATCH"
 		})
 		.done(function(){
-			alert('added label!');
 			$('#labelDiv').css('display', 'none');
 			updateCardLabels(listIndex, cardIndex);
 			loadMainList();	
@@ -305,4 +305,11 @@ var updateCardLabels = function(listIndex, cardIndex) {
 			$('#labelList').append(label);
 		}
 	});
+}
+
+
+var closeListForm = function() {
+	$('#listInput').val('');
+	$('#addList').css('display', 'none');
+	$('#addListSpan').css('display', 'inline-block');
 }

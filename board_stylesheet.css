@@ -156,6 +156,7 @@ body {
 #listForm {
 	display: inline-block;
 	width: 100%;
+	background-color: #e2e4e6;
 }
 
 #newList {
@@ -188,6 +189,9 @@ body {
 	background-color: #006699;
 }
 
+
+
+
 form {
 	margin: 0;
 	border-radius: 5px;
@@ -218,7 +222,7 @@ form {
 	height: 36px;
 	border-radius: 5px;
 	font-size: 16px;
-	background-color: #e2e4e6;
+	background-color: #d1d1d1;
 }
 
 #listSubmit, #cardSubmit{
@@ -273,9 +277,18 @@ form {
 	margin-top: 5px;
 }
 
+.closeCardForm, #closeListForm{
+	display:inline-block;
+	position: absolute;
+	margin-top: 44px;
+	margin-left: 85px;
+	font-size: 20px;
+	color: #aaaaaa;
+}
 
-
-
+.closeCardForm:hover, .deleteList:hover, #closeListForm:hover{
+	color: #363636;
+}
 
 
 /*Card Previews/Inner List*/
@@ -304,11 +317,11 @@ form {
 	margin-bottom: 0;
 }
 
-.cardList li:hover, .addcard:hover, .deleteList:hover, #addLabelsButton:hover {
+.cardList li:hover, .addcard:hover, #addLabelsButton:hover {
 	background-color: #adadad;
 }
 
-#addList:hover {
+#addListSpan:hover {
 	background-color: #015887;
 }
 
@@ -325,6 +338,7 @@ form {
 	float: right;
 	margin-top: 3px;
 	margin-right: 10px;
+	color: #aaaaaa;
 }
 
 /*Card*/
