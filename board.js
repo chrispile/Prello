@@ -1,3 +1,5 @@
+
+
 var lol;
 var mainList;
 $(function() {
@@ -46,17 +48,26 @@ $(function() {
 
 	lol.on('click', '.closeCardForm', closeCardForm);
 
+
+	$(document).ready(function() {
+		var height = $(document).height();
+		height = height - 100;
+		$(".list").css('max-height', height.toString());
+
+	})
+
 });
 
 var loadData = function() {
 	$.ajax( {
-		url: "http://thiman.me:1337/pilec/list",
+		url: "http://localhost:3000/list",
 		type: "GET",
 		dataType: "json",
 	})
 	.done(function(json) {
 		mainList = json;
 		loadMainList();
+		console.log(mainList);
 	});
 }
 
@@ -130,8 +141,8 @@ var submitInput = function() {
 
 //Adds a new list to the data structure, and updates UI
 var addList = function(listTitle) {
-	$.ajax({
-		url: "http://thiman.me:1337/pilec/list",
+	$.ajax({ 
+		url: "http://localhost:3000/list",
 		data: {
 		'title': listTitle,
 		},
@@ -187,11 +198,11 @@ var addCard = function(title, listIndex) {
 	var newTitle = title;
 	var listID = mainList[listIndex]._id;
 	$.ajax({
-		url: "http://thiman.me:1337/pilec/list/" + listID + "/card",
+		url: "http://localhost:3000/list/" + listID + "/card",
 		data: {
 			'title': newTitle,
 			'description': '',
-			labels: [''],
+			'labels': ['']
 		},
 		type:"POST",
 	})
@@ -227,7 +238,7 @@ var deleteList = function(event) {
 	var li = $(this).parent();
 	var listIndex = li.attr('data-listindex');
 	$.ajax({
-		url: "http://thiman.me:1337/pilec/list/" + mainList[listIndex]._id,
+		url: "http://localhost:3000/list/" + mainList[listIndex]._id,
 		type: 'DELETE'
 	})
 	.done(function() {
@@ -245,7 +256,7 @@ var deleteCard = function(event) {
 	var listID = mainList[listIndex]._id;
 	var cardID = mainList[listIndex].cards[cardIndex]._id;
 	$.ajax({
-		url: "http://thiman.me:1337/pilec/list/" + listID + "/card/" + cardID,
+		url: "http://localhost:3000/list/" + listID + "/card/" + cardID,
 		type: "DELETE"
 	})
 	.done(function(){
@@ -281,8 +292,9 @@ var addLabels = function() {
 		var cardID = mainList[listIndex].cards[cardIndex]._id;
 		labelArray.push(color);
 		var card =  mainList[listIndex].cards[cardIndex]
+		console.log(card);
 		$.ajax({
-			url: "http://thiman.me:1337/pilec/list/" + listID + "/card/" + cardID,
+			url: "http://localhost:3000/list/" + listID + "/card/" + cardID,
 			data: card,
 			type: "PATCH"
 		})
