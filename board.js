@@ -67,7 +67,6 @@ var loadData = function() {
 	.done(function(json) {
 		mainList = json;
 		loadMainList();
-		console.log(mainList);
 	});
 }
 
@@ -88,7 +87,7 @@ var updateCardList = function(listIndex, cardsUl) {
 	for(var cardIndex = 0; cardIndex < mainList[listIndex].cards.length; cardIndex++) {
 		var card = cardList[cardIndex];
       	var cardLi = $('<li/>').attr('data-cardindex', cardIndex).attr('data-listindex', listIndex);
-		var colorArray = card.labels;
+		var colorArray = card["labels[]"];
 		$.each(colorArray, function(i, color) {
 				if(color !="") {
 				var label = $('<div/>').addClass('labelPreview').css('backgroundColor', color);
@@ -202,7 +201,7 @@ var addCard = function(title, listIndex) {
 		data: {
 			'title': newTitle,
 			'description': '',
-			'labels': ['']
+			'labels[]': ['']
 		},
 		type:"POST",
 	})
@@ -285,14 +284,14 @@ var addLabels = function() {
 	var listIndex = $('#card').attr('data-listindex');
 	var cardIndex = $('#card').attr('data-cardindex');
 	var hasColor = false;
-	var labelArray = mainList[listIndex].cards[cardIndex].labels;
+	var card = mainList[listIndex].cards[cardIndex];
+	var labelArray = card["labels[]"]
 	var hasColor = $.inArray(color, labelArray);
 	if(hasColor === -1) {
 		var listID = mainList[listIndex]._id;
 		var cardID = mainList[listIndex].cards[cardIndex]._id;
 		labelArray.push(color);
 		var card =  mainList[listIndex].cards[cardIndex]
-		console.log(card);
 		$.ajax({
 			url: "http://localhost:3000/list/" + listID + "/card/" + cardID,
 			data: card,
@@ -309,7 +308,7 @@ var addLabels = function() {
 //Updates HTML to include a color label for a card
 var updateCardLabels = function(listIndex, cardIndex) {
 	$('#labelList').html('');
-	var labelArray = mainList[listIndex].cards[cardIndex].labels;
+	var labelArray = mainList[listIndex].cards[cardIndex]["labels[]"];
 	$.each(labelArray, function(i, color) {
 		if(color!="") {
 			var label = $('<div/>').addClass('cardLabels').css('backgroundColor', color);

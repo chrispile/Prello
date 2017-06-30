@@ -13,7 +13,7 @@ var Card = mongoose.model('Card',
 	{
 		title: String,
 		description: String,
-		labels: Array
+		"labels[]" : Array
 	}
 );
 
@@ -69,7 +69,7 @@ router.post('/:listID/card', function(req, res) {
 	var newCard = new Card({
 		title: req.body.title,
 		description: req.body.description, 
-		labels: req.body.labels
+		"labels[]": req.body["labels[]"]
 	});
 	List.findOne({_id: listID}, function(err, list) {
 		list.cards.push(newCard);
@@ -83,7 +83,6 @@ router.post('/:listID/card', function(req, res) {
 router.delete('/:listID/card/:cardID', function(req, res) {
 	var listID = req.params.listID;
 	var cardID = req.params.cardID;
-	console.log(cardID);
 	List.findOne({_id: listID}, function(err, list) {
 		for(var i = 0; i < list.cards.length; i++) {
 			if(list.cards[i]._id == cardID) {
