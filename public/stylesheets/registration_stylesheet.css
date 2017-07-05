@@ -1,5 +1,16 @@
+html, body {
+	height: 100%;
+}
+
+html {
+	display: table;
+	margin: auto;
+}
+
 body {
 	font-family: Arial;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 input {

@@ -1,0 +1,99 @@
+/*Navigation*/
+#nav {
+	background-color: #006699;
+	height: 50px;
+	width: 100%;
+	margin-bottom: 10px;
+	position: fixed;
+	top: 0px;
+	z-index: 100;
+	display: inline-block;
+}
+
+/*Menu Classes*/
+.menuButton {
+	position: absolute;
+	color: #ffffff;
+	top: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #3399cc;
+}
+
+.menu{
+	background-color: #EBEBEB; 
+	width: 300px;
+	display: none;
+	position: fixed;
+	border-radius: 5px;
+	margin-top: 5px;
+	box-shadow: 0 0 7px #888888;
+}
+
+.menuButton ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+/*Boards Button and Menu*/
+#boardsButton {
+	left: 0;
+	margin-left: 10px;
+}
+
+#boardsMenu {
+	left: 0;
+	margin-left: 10px;
+}
+
+#boardsMenu ul li {
+	padding: 8px 5px;
+	margin: 10px 5px;
+	background-color: #5D9FC1;
+	border-radius: 5px;
+}
+
+#boardsMenu p {
+	margin: 15px 10px;
+	color: #5d5f63;
+	font-size: 16px;
+}
+
+/*Options Button and Menu*/
+#user {
+	margin-top: 10px;
+	text-align: center;
+	color: #5d5f63;
+}
+
+#optionsButton {
+	right: 0;
+	margin-right: 10px;
+}
+
+#optionsMenu {
+	right: 0;
+}
+
+#optionsMenu ul li {
+	padding: 8px 5px;
+	margin: 10px 5px;
+	color: #5d5f63;
+}
+
+/*, #addLabelsButton:hover #labelDiv*/
+#boardsButton:hover #boardsMenu, #optionsButton:hover #optionsMenu{
+	display: block;
+}
+
+/*Prello Logo*/
+#logo {
+	margin: auto;
+	text-align: center;
+	color: #ffffff;
+	padding: 10px;
+}
+
+#logout:hover {
+	background-color: #a0a0a0; 
+}

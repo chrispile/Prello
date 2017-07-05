@@ -6,101 +6,6 @@ body {
 	font-family: Arial;
 }
 
-/*Navigation*/
-#nav {
-	background-color: #006699;
-	height: 50px;
-	width: 100%;
-	margin-bottom: 10px;
-	position: fixed;
-	top: 0px;
-	z-index: 100;
-	display: inline-block;
-}
-
-/*Menu Classes*/
-.menuButton {
-	position: absolute;
-	color: #ffffff;
-	top: 10px;
-	padding: 5px;
-	border-radius: 5px;
-	background-color: #3399cc;
-}
-
-.menu{
-	background-color: #EBEBEB; 
-	width: 300px;
-	display: none;
-	position: fixed;
-	border-radius: 5px;
-	margin-top: 5px;
-	box-shadow: 0 0 7px #888888;
-}
-
-.menuButton ul {
-	padding: 0;
-	list-style-type: none;
-}
-
-/*Boards Button and Menu*/
-#boardsButton {
-	left: 0;
-	margin-left: 10px;
-}
-
-#boardsMenu {
-	left: 0;
-	margin-left: 10px;
-}
-
-#boardsMenu ul li {
-	padding: 8px 5px;
-	margin: 10px 5px;
-	background-color: #5D9FC1;
-	border-radius: 5px;
-}
-
-#boardsMenu p {
-	margin: 15px 10px;
-	color: #5d5f63;
-	font-size: 16px;
-}
-
-/*Options Button and Menu*/
-#user {
-	margin-top: 10px;
-	text-align: center;
-	color: #5d5f63;
-}
-
-#optionsButton {
-	right: 0;
-	margin-right: 10px;
-}
-
-#optionsMenu {
-	right: 0;
-}
-
-#optionsMenu ul li {
-	padding: 8px 5px;
-	margin: 10px 5px;
-	color: #5d5f63;
-}
-
-/*, #addLabelsButton:hover #labelDiv*/
-#boardsButton:hover #boardsMenu, #optionsButton:hover #optionsMenu{
-	display: block;
-}
-
-/*Prello Logo*/
-#logo {
-	margin: auto;
-	text-align: center;
-	color: #ffffff;
-	padding: 10px;
-}
 
 /*Board Name*/
 #boardName {
@@ -361,7 +266,7 @@ form {
 	z-index: 102;
 	padding: 10px;
 	width: 60%;
-	background-color: #fefefe;
+	background-color: #e2e4e6;
 	white-space: normal;
 	border-radius: 5px;
 	position: absolute;
@@ -427,6 +332,7 @@ form {
 	color: #ffffff;
 	font-weight: bold;
 	text-align: left;
+	float: right;
 }
 
 #deleteCard:hover {
@@ -467,7 +373,7 @@ form {
 	width: 30px;
 	height: 30px;
 	font-size: 20px;
-	background-color: #e2e4e6;
+	background-color: #fefefe;
 	text-align: center;
 	line-height: 30px;
 	display: inline-block;
@@ -499,8 +405,8 @@ form {
 #labelDiv ul li {
 	background-color: pink;
 	margin: 5px 0;
-	width: 240;
-	height: 35;
+	width: 240px;
+	height: 35px;
 	border-radius: 5px;
 }
 
@@ -526,4 +432,62 @@ form {
 	border-radius: 5px;
 	display: inline-block;
 	margin-right: 4px;
+}
+
+#commentInput {
+	overflow: hidden;
+	word-wrap: break-word;
+	height: 75px;
+	display: block;
+	width: 60%;
+	background-color: #fefefe;
+	border-radius: 5px;
+}
+
+#saveComment {
+	margin-top: 10px;
+	border-style: none;
+	background-color: #61bd4f;
+	border-radius: 5px;
+	padding: 5px 10px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+	font-family: Arial;
+}
+
+#commentList {
+	margin: 5px 0;
+	padding: 0;
+}
+
+#commentList li {
+	list-style-type: none;
+}
+
+#saveComment:hover {
+	background-color: #3a722f;
+}
+
+#userDiv {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 14px;
+	margin: 4px 0;
+}
+
+#commentDiv {
+	display: table;
+	background-color: #ffffff;
+	border-color: rgb(169, 169, 169);
+	width: auto;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 4px;
+}
+
+#datetimeDiv {
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 12px;
 }

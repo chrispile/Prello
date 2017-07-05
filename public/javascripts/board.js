@@ -1,5 +1,3 @@
-
-
 var lol;
 var mainList;
 $(function() {
@@ -12,7 +10,6 @@ $(function() {
 	});
 	$('.cardForm').submit(function(e) {
 		event.preventDefault();
-
 		return false;
 	});
 
@@ -29,6 +26,7 @@ $(function() {
 	$('#addLabelsButton').click(showLabels);
 	$('#labelDiv ul li').click(addLabels);
 	$('#closeListForm').click(closeListForm);
+	$('#saveComment').click(saveComment);
 
 	lol.on('click', '.cardForm', function(event) {
 		event.stopPropagation();
@@ -87,7 +85,7 @@ var updateCardList = function(listIndex, cardsUl) {
 	for(var cardIndex = 0; cardIndex < mainList[listIndex].cards.length; cardIndex++) {
 		var card = cardList[cardIndex];
       	var cardLi = $('<li/>').attr('data-cardindex', cardIndex).attr('data-listindex', listIndex);
-		var colorArray = card["labels[]"];
+		var colorArray = card.labels;
 		$.each(colorArray, function(i, color) {
 				if(color !="") {
 				var label = $('<div/>').addClass('labelPreview').css('backgroundColor', color);
@@ -201,7 +199,8 @@ var addCard = function(title, listIndex) {
 		data: {
 			'title': newTitle,
 			'description': '',
-			'labels[]': ['']
+			'labels': [], 
+			'comments':[]
 		},
 		type:"POST",
 	})
@@ -224,6 +223,7 @@ var showModal = function(event) {
 	$('#card').attr('data-cardindex', cardIndex);
 	$('#card').attr('data-listindex', listIndex);
 	updateCardLabels(listIndex, cardIndex);
+	showComments(listIndex, cardIndex);
 }
 
 var hideModal = function(event) {
@@ -285,7 +285,7 @@ var addLabels = function() {
 	var cardIndex = $('#card').attr('data-cardindex');
 	var hasColor = false;
 	var card = mainList[listIndex].cards[cardIndex];
-	var labelArray = card["labels[]"]
+	var labelArray = card.labels;
 	var hasColor = $.inArray(color, labelArray);
 	if(hasColor === -1) {
 		var listID = mainList[listIndex]._id;
@@ -308,7 +308,7 @@ var addLabels = function() {
 //Updates HTML to include a color label for a card
 var updateCardLabels = function(listIndex, cardIndex) {
 	$('#labelList').html('');
-	var labelArray = mainList[listIndex].cards[cardIndex]["labels[]"];
+	var labelArray = mainList[listIndex].cards[cardIndex].labels;
 	$.each(labelArray, function(i, color) {
 		if(color!="") {
 			var label = $('<div/>').addClass('cardLabels').css('backgroundColor', color);
@@ -323,4 +323,53 @@ var closeListForm = function() {
 	$('#listInput').val('');
 	$('#addList').css('display', 'none');
 	$('#addListSpan').css('display', 'inline-block');
+}
+
+var saveComment = function() {
+	var text = $('#commentInput').val();
+	$('#commentInput').val('');
+	var user = $('#user').html();
+	var currentdate = new Date(); 
+	var datetime = 	currentdate.getDate() + "/"
+	                + (currentdate.getMonth()+1)  + "/" 
+	                + currentdate.getFullYear() + " @ "  
+	                + currentdate.getHours() + ":"  
+	                + currentdate.getMinutes() + ":" 
+	                + currentdate.getSeconds();
+
+
+	var listIndex = $('#card').attr('data-listindex');
+	var cardIndex = $('#card').attr('data-cardindex');
+	var card = mainList[listIndex].cards[cardIndex];
+	var commentsArray = card.comments;
+	var comment = {
+		user: user,
+		datetime: datetime,
+		comment: text
+	}
+	commentsArray.push(comment);
+	var listID = mainList[listIndex]._id;
+	var cardID = mainList[listIndex].cards[cardIndex]._id;
+	$.ajax({
+		url: "http://localhost:3000/list/" + listID + "/card/" + cardID,
+		data: card,
+		type: "PATCH"
+	})
+	.done(function(){
+		showComments(listIndex, cardIndex);
+		loadMainList();	
+	});
+}
+
+var showComments = function(listIndex, cardIndex) {
+	$('#commentList').html('');
+	var commentArray = mainList[listIndex].cards[cardIndex].comments;
+	$.each(commentArray, function(i, comment) {
+		var commentLi = $('<li/>');
+		var user = $('<div/>').html(comment.user).attr('id', 'userDiv');
+		var text = $('<div/>').html(comment.comment).attr('id', 'commentDiv');
+		var datetime = $('<div/>').html(comment.datetime).attr('id', 'datetimeDiv');
+		commentLi.append(user).append(datetime).append(text);
+		$('#commentList').append(commentLi);
+	});
 }

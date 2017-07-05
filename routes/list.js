@@ -1,21 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var List = require('../models/list');
+var Card = require('../models/card');
 
-var List = mongoose.model('List', 
-	{
-		title: String,
-		cards: Array
-	}
-);
 
-var Card = mongoose.model('Card', 
-	{
-		title: String,
-		description: String,
-		"labels[]" : Array
-	}
-);
 
 router.get('/', function(req, res, next) {
 	List.find(function(err, lists) {
@@ -69,12 +58,18 @@ router.post('/:listID/card', function(req, res) {
 	var newCard = new Card({
 		title: req.body.title,
 		description: req.body.description, 
-		"labels[]": req.body["labels[]"]
+		labels: req.body.labels,
+		comments: req.body.comments
 	});
 	List.findOne({_id: listID}, function(err, list) {
 		list.cards.push(newCard);
 		list.save(function(err, list) {
-			res.send(list);
+			if(err) {
+				console.log(err);
+			}
+			else {
+				res.send(list);
+			}
 		});
 	});
 });
@@ -99,14 +94,24 @@ router.patch('/:listID/card/:cardID', function(req, res){
 	var listID = req.params.listID;
 	var cardID = req.params.cardID;
 	List.findOne({_id: listID}, function(err, list) {
-		for(var i = 0; i < list.cards.length; i++) {
-			if(list.cards[i]._id == cardID) {
-				Object.assign(list.cards[i], req.body);
-				list.markModified("cards");
-				list.save(function(err, list) {
-					res.json(list);
-				});
-				break;
+		if (err) {
+			console.log(err)
+		}
+		else {
+			for(var i = 0; i < list.cards.length; i++) {
+				if(list.cards[i]._id == cardID) {
+					Object.assign(list.cards[i], req.body);
+					list.markModified("cards");
+					list.save(function(err, list) {
+						if(err) {
+							console.log(err)
+						}
+						else {
+							res.json(list);
+						}
+					});
+					break;
+				}
 			}
 		}
 	});
