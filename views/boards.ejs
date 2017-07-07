@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %> | Prello </title>
-    <link rel='stylesheet' href= <%= style %> />
- </head>
-
-<body>
-	<%- include('header', {username: username }); %>
+<%- include('header', {title: title, style: 'stylesheets/boards_stylesheet.css', username: username }); %>
 
 
 	<div id="boardsdiv">
-	  <h3 id="title"> Personal Boards </h3>
-	  <ul id="boards">
-	  	<li>Board 1</li>
-	  	<li id="addBoard">Create new board...</li>
-	  </ul>
+		<h3 id="title"> Personal Boards </h3>
+		<ul id="boards">
+		</ul>
+		<div id="addBoard">Create new board...</div>
+		<div id="addBoardDiv">
+			<form id="boardForm"">
+				<input type ="text" id="boardInput" placeholder="Add a board..." autocomplete="off">
+				<input type = "submit" value="Create" id="boardSubmit">
+				<div id="closeBoardForm">&#10006</div>
+			</form>
+		</div>
 	</div>
-	
-	<%- include footer %>
 
-</body>
-</html>
+<%- include('footer', {script: "javascripts/boards.js"}); %>

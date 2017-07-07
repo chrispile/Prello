@@ -2,41 +2,25 @@
 <html>
   <head>
     <title><%= title %> | Prello </title>
-    <link rel='stylesheet' href= <%= style %> />
+    <link rel='stylesheet' href= 'stylesheets/registration_stylesheet.css' />
  </head>
 
 <body>
 	<div id="regdiv">
 		<h1>Create a Prello Account</h1>
-		<form id="register">
+		<form id="register" method="post" action="/users">
 			Username<br>
-			<input type = "text" id="usernameReg" placeholder="e.g., Calvin and Hobbes"><br>
+			<input type = "text" name="username" placeholder="e.g., Calvin and Hobbes" required><br>
 			Email<br>
-			<input type = "email" id="emailReg" placeholder="e.g.,calvin@gross.club"><br>
+			<input type = "email" name="email" placeholder="e.g.,calvin@gross.club" required><br>
 			Password<br>
-			<input type = "password" id="passwordReg" placeholder="e.g.,··········"><br>
+			<input type = "password" id = 'password1' name="password" placeholder="e.g.,··········" required><br>
 			Confirm Password<br>
-			<input type = "password" id="confirmPasswordReg" placeholder="e.g.,··········"><br>
+			<input type = "password" id="password2" placeholder="e.g.,··········" required><br>
 		</form>
 		<button type="submit" form="register" id="registerSubmit">Create New Account</button>
-	</div>
-
-	<div id="logindiv">
-		<h1>Log in to Prello</h1>
-		<form id="login">
-			Username<br>
-			<input type = "text" id="username" placeholder="e.g.,hermione@spew.org.uk"><br>
-			Password<br>
-			<input type = "password" id="password" placeholder="e.g.,··········"><br>
-		</form>
-		<button type="submit" form="login" id="loginSubmit">Log In</button>
+		<a href = "http://localhost:3000/login">Already have an account? Log in</a>
 	</div>
 
 
-
-
-	<script src="javascripts/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="javascripts/registration.js"></script>
-
-</body>
-</html>
+<%- include('footer', {script: "javascripts/registration.js"}); %>

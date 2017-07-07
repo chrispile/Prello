@@ -6,8 +6,9 @@ var Card = require('../models/card');
 
 
 
-router.get('/', function(req, res, next) {
-	List.find(function(err, lists) {
+router.get('/:bid', function(req, res, next) {
+	console.log(req.params.bid);
+	List.find({bid: req.params.bid}, function(err, lists) {
 		res.json(lists);
 	});
 });
@@ -15,7 +16,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
 	var newList = new List(
-		{ title: req.body.title }
+		{ 
+			title: req.body.title,
+			bid: req.body.bid
+		}
 	);
 	newList.save(function (err, list) {
 	  if (err) {
@@ -59,7 +63,8 @@ router.post('/:listID/card', function(req, res) {
 		title: req.body.title,
 		description: req.body.description, 
 		labels: req.body.labels,
-		comments: req.body.comments
+		comments: req.body.comments,
+		author: req.session.user.username
 	});
 	List.findOne({_id: listID}, function(err, list) {
 		list.cards.push(newCard);
@@ -115,6 +120,35 @@ router.patch('/:listID/card/:cardID', function(req, res){
 			}
 		}
 	});
+});
+
+
+router.post('/:listID/card/:cardID/comment', function(req, res) {
+	var cardID = req.params.cardID;
+	var listID = req.params.listID;
+	List.findOne({_id: listID }, function(err, list) {
+		if (err) {
+			console.log(err)
+		}
+		else {
+			for(var i = 0; i < list.cards.length; i++) {
+				if(list.cards[i]._id == cardID) {
+					var comment = req.body;
+					list.cards[i].comments.push(comment);
+					list.markModified("cards");
+					list.save(function(err, list) {
+						if(err) {
+							console.log(err)
+						}
+						else {
+							res.json(list);
+						}
+					});
+					break;
+				}
+			}
+		}
+	}); 
 });
 
 module.exports = router;

@@ -27,6 +27,7 @@ input {
 
 h1 {
   color: #434444;
+  margin: 16px 0;
 }
 
 form {
@@ -50,4 +51,6 @@ button {
   color: #ffffff;
   font-size: 20px;
   border-radius: 5px;
+  display: block;
+  margin-bottom: 10px;
 }

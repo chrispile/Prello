@@ -1,8 +1,11 @@
 var lol;
 var mainList;
+var bid = (window.location.href).split('/').pop();
+var board;
 $(function() {
 	lol = $('#outerList');
 	loadData();
+
 
 	$('#listForm').submit(function(e) {
 		event.preventDefault();
@@ -58,8 +61,9 @@ $(function() {
 
 var loadData = function() {
 	$.ajax( {
-		url: "http://localhost:3000/list",
+		url: "http://localhost:3000/list/" + bid,
 		type: "GET",
+
 		dataType: "json",
 	})
 	.done(function(json) {
@@ -76,6 +80,7 @@ var loadMainList = function() {
 		var listLi = createList(listIndex);
 		lol.append(listLi);
 	}
+	getBoard();
 }
 
 //Updates the cards for a specific list [HELPER]
@@ -141,7 +146,8 @@ var addList = function(listTitle) {
 	$.ajax({ 
 		url: "http://localhost:3000/list",
 		data: {
-		'title': listTitle,
+			'title': listTitle,
+			'bid': bid
 		},
 		type: "POST",
 	}).done(function(json) {
@@ -325,18 +331,12 @@ var closeListForm = function() {
 	$('#addListSpan').css('display', 'inline-block');
 }
 
+
 var saveComment = function() {
 	var text = $('#commentInput').val();
 	$('#commentInput').val('');
 	var user = $('#user').html();
-	var currentdate = new Date(); 
-	var datetime = 	currentdate.getDate() + "/"
-	                + (currentdate.getMonth()+1)  + "/" 
-	                + currentdate.getFullYear() + " @ "  
-	                + currentdate.getHours() + ":"  
-	                + currentdate.getMinutes() + ":" 
-	                + currentdate.getSeconds();
-
+	var datetime = new Date(); 
 
 	var listIndex = $('#card').attr('data-listindex');
 	var cardIndex = $('#card').attr('data-cardindex');
@@ -351,9 +351,9 @@ var saveComment = function() {
 	var listID = mainList[listIndex]._id;
 	var cardID = mainList[listIndex].cards[cardIndex]._id;
 	$.ajax({
-		url: "http://localhost:3000/list/" + listID + "/card/" + cardID,
-		data: card,
-		type: "PATCH"
+		url: "http://localhost:3000/list/" + listID + "/card/" + cardID + "/comment", 
+		data: comment,
+		type: "POST"
 	})
 	.done(function(){
 		showComments(listIndex, cardIndex);
@@ -371,5 +371,16 @@ var showComments = function(listIndex, cardIndex) {
 		var datetime = $('<div/>').html(comment.datetime).attr('id', 'datetimeDiv');
 		commentLi.append(user).append(datetime).append(text);
 		$('#commentList').append(commentLi);
+	});
+}
+
+
+var getBoard = function() {
+	$.ajax({ 
+		url: "http://localhost:3000/boards/" + bid,
+		type: "GET",
+	}).done(function(json) {
+		board = json
+		$('#boardName').html(board.title);
 	});
 }

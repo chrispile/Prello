@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> | Prello </title>
+    <link rel='stylesheet' href= 'stylesheets/registration_stylesheet.css' />
+ </head>
+
+<body>
+	<div id="logindiv">
+		<h1>Log in to Prello</h1>
+		<form id="login" method="post" action="/login">
+			Username<br>
+			<input type = "text" name="username" placeholder="e.g.,hermione@spew.org.uk"><br>
+			Password<br>
+			<input type = "password" name="password" placeholder="e.g.,··········"><br>
+		</form>
+		<button type="submit" form="login" id="loginSubmit">Log In</button>
+		<a href = "http://localhost:3000/">Don't have an account? Sign up</a>
+	</div>
+
+
+
+<%- include('footer', {script: null}); %>

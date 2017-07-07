@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %> | Prello </title>
-    <link rel='stylesheet' href= <%= style %> />
- </head>
-
-<body>
-	<%- include('header', {username: username}); %>
+<%- include('header', {title: title, style: '/stylesheets/board_stylesheet.css', username: username}); %>
 
 <!-- Board Name -->
- 	<h3 id="boardName">Board Name</h3>
+ 	<h3 id="boardName"></h3>
 
 <!-- Boards -->
  	<div id="listDiv">
@@ -51,16 +43,10 @@
  		<h6>Description</h6>
  		<p id="desc"></p>
  		<h6>Comments</h6>
- 		<ul id="commentList"></ul>
  		<textarea id ="commentInput" placeholder="Write a comment..."></textarea>
  		<button type="button" id="saveComment">Save</button>
+  		<ul id="commentList"></ul>
  		<button type="button" id="deleteCard">Delete Card</button>
  	</div>
 
-	<%- include footer %>
-
-
-	<script src="javascripts/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="javascripts/board.js"></script>
-</body>
-</html>
+<%- include('footer', {script: "/javascripts/board.js"}); %>
