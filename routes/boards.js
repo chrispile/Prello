@@ -32,6 +32,7 @@ router.post('/', function(req, res) {
 router.get('/:bid', function(req, res) {
   Board.findOne({_id: req.params.bid}, function(err, board) {
   	res.json(board);
+  	console.log('ok');
   });
 });
 
