@@ -35,13 +35,14 @@ router.get('/dashboard', requireLogin, function(req, res) {
 });
 
 router.get('/board/:bid', requireLogin, function(req, res) {
-  res.render('index', { title: 'Board', username: res.locals.user.username, bid: req.params.bid});
+  res.render('index', { title: 'Board', username: res.locals.user.username});
 });
 
 router.get('/logout', function(req, res) {
   req.session.reset();
   res.redirect("/");
 });
+
 
 module.exports = router;
 

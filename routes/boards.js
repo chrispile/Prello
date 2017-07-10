@@ -6,9 +6,18 @@ var Board = require('../models/board');
 
 
 router.get('/', function(req, res, next) {
-	Board.find({users: req.session.user.username}, function(err, boards) {
-		res.json(boards);
-	});
+	if(req.session.user != null) {
+		Board.find({users: req.session.user.username}, function(err, boards) {
+			if(err) {
+				console.log(err);
+			}
+			else {
+				res.json(boards);
+			}
+		});
+	} else {
+		res.send('');
+	}
 });
 
 
@@ -18,22 +27,25 @@ router.post('/', function(req, res) {
 			title: req.body.title,
 			users: [req.session.user.username]
 		}
-	);
+		);
 	newBoard.save(function (err, board) {
-	  if (err) {
-	    console.log(err);
-	  } else {
-	    res.json(board);
-	  }
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(board);
+		}
 	});
 });
 
 
 router.get('/:bid', function(req, res) {
-  Board.findOne({_id: req.params.bid}, function(err, board) {
-  	res.json(board);
-  	console.log('ok');
-  });
+	Board.findOne({_id: req.params.bid}, function(err, board) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.json(board);
+		}
+	});
 });
 
 

@@ -1,14 +1,13 @@
 var boards;
 var boardList;
+var boardMenu;
 
 $(function() {
 	boardList = $('#boards');
+	boardMenu = $('#boardMenuList');
 	loadData();
 
-	$('#addBoard').click(function() {
-		$(this).css('display', 'none');
-		$('#addBoardDiv').css('display', 'inline-block');
-	});
+
 
 	$('#closeBoardForm').click(closeBoardForm);
 
@@ -20,7 +19,15 @@ $(function() {
 	$('#boardSubmit').click(submitInput);
 
 	boardList.on('click', 'li', navigateToBoard);
+
+ 	$('#addBoard').click(showBoardForm);
+
 });
+
+var showBoardForm = function() {
+	$(this).css('display', 'none');
+	$('#addBoardDiv').css('display', 'inline-block');
+}
 
 
 var loadData = function() {
@@ -36,11 +43,11 @@ var loadData = function() {
 }
 
 var loadMainList = function() {
-	boardList.html('');
 	for(var listIndex = 0; listIndex < boards.length; listIndex++) {
 		var listLi = createBoard(listIndex);
-		boardList.append(listLi);
+		$('#addBoard').before(listLi);
 	}
+
 }
 
 
@@ -74,7 +81,10 @@ var addBoard = function(boardTitle) {
 	}).done(function(json) {
 		boards.push(json);
 		var boardLi = createBoard(boards.length - 1);
-		boardList.append(boardLi);
+		$('#addBoard').before(boardLi);
+		var boardMenuLi = createBoardMenu(boards.length -1);
+		boardMenu.append(boardMenuLi);
+
 	});
 }
 
@@ -88,4 +98,10 @@ var navigateToBoard = function() {
 	var boardIndex = $(this).attr('data-boardindex');
 	var boardID = boards[boardIndex]._id;
 	window.location = "http://localhost:3000/board/" + boardID;
+}
+
+var createBoardMenu = function(boardIndex) {
+	var boardID = boards[boardIndex]._id;
+	var listLi = $('<li/>').attr('data-boardid', boardID).html(boards[boardIndex].title);
+	return listLi;
 }

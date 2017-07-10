@@ -233,6 +233,7 @@ var showModal = function(event) {
 }
 
 var hideModal = function(event) {
+	$('#commentInput').val('');
 	$('#cardModal').css('display', 'none');
 	$('#card').css('display', 'none');
 	$('#labelDiv').css('display', 'none');
@@ -281,6 +282,9 @@ var labelColors = function() {
 var showLabels = function() {
 	if($('#labelDiv').css('display') === 'none') {
 		$('#labelDiv').css('display', 'block'); 
+	} 
+	else {
+		$('#labelDiv').css('display', 'none');
 	}
 }
 
@@ -334,31 +338,33 @@ var closeListForm = function() {
 
 var saveComment = function() {
 	var text = $('#commentInput').val();
-	$('#commentInput').val('');
-	var user = $('#user').html();
-	var datetime = new Date(); 
+	if(text != '') {
+		$('#commentInput').val('');
+		var user = $('#user').html();
+		var datetime = new Date(); 
 
-	var listIndex = $('#card').attr('data-listindex');
-	var cardIndex = $('#card').attr('data-cardindex');
-	var card = mainList[listIndex].cards[cardIndex];
-	var commentsArray = card.comments;
-	var comment = {
-		user: user,
-		datetime: datetime,
-		comment: text
+		var listIndex = $('#card').attr('data-listindex');
+		var cardIndex = $('#card').attr('data-cardindex');
+		var card = mainList[listIndex].cards[cardIndex];
+		var commentsArray = card.comments;
+		var comment = {
+			user: user,
+			datetime: datetime,
+			comment: text
+		}
+		commentsArray.push(comment);
+		var listID = mainList[listIndex]._id;
+		var cardID = mainList[listIndex].cards[cardIndex]._id;
+		$.ajax({
+			url: "http://localhost:3000/list/" + listID + "/card/" + cardID + "/comment", 
+			data: comment,
+			type: "POST"
+		})
+		.done(function(){
+			showComments(listIndex, cardIndex);
+			loadMainList();	
+		});
 	}
-	commentsArray.push(comment);
-	var listID = mainList[listIndex]._id;
-	var cardID = mainList[listIndex].cards[cardIndex]._id;
-	$.ajax({
-		url: "http://localhost:3000/list/" + listID + "/card/" + cardID + "/comment", 
-		data: comment,
-		type: "POST"
-	})
-	.done(function(){
-		showComments(listIndex, cardIndex);
-		loadMainList();	
-	});
 }
 
 var showComments = function(listIndex, cardIndex) {

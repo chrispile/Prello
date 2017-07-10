@@ -270,9 +270,10 @@ form {
 	white-space: normal;
 	border-radius: 5px;
 	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	left: 0;
+	right: 0;
+	top: 60px;
+	margin: auto;
 }
 
 #cardTitle {
@@ -484,6 +485,7 @@ form {
 	border-radius: 5px;
 	font-size: 14px;
 	padding: 4px;
+	margin-left: 10px;
 }
 
 #datetimeDiv {

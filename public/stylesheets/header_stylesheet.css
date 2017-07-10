@@ -3,7 +3,6 @@
 	background-color: #006699;
 	height: 50px;
 	width: 100%;
-	margin-bottom: 10px;
 	position: fixed;
 	top: 0px;
 	z-index: 100;
@@ -46,11 +45,15 @@
 	margin-left: 10px;
 }
 
-#boardsMenu ul li {
+#boardMenuList li {
 	padding: 8px 5px;
 	margin: 10px 5px;
 	background-color: #5D9FC1;
 	border-radius: 5px;
+}
+
+#boardMenuList li:hover {
+	background-color: #006699;
 }
 
 #boardsMenu p {
@@ -88,10 +91,22 @@
 
 /*Prello Logo*/
 #logo {
+	color: #66a9cc;
+	left: 0;
+	right: 0;
 	margin: auto;
+	width: 80px;
+	position: absolute;
 	text-align: center;
+	text-decoration: none;
+	height: 30px;
+	top: 0;
+	bottom: 0;
+	font-size: 24px;
+}
+
+#logo:hover {
 	color: #ffffff;
-	padding: 10px;
 }
 
 #logout:hover {

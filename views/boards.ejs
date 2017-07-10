@@ -4,15 +4,16 @@
 	<div id="boardsdiv">
 		<h3 id="title"> Personal Boards </h3>
 		<ul id="boards">
+			<div id="addBoard">Create new board...</div>
+			<div id="addBoardDiv">
+				<form id="boardForm"">
+					<input type ="text" id="boardInput" placeholder="Add a board..." autocomplete="off">
+					<input type = "submit" value="Create" id="boardSubmit">
+					<div id="closeBoardForm">&#10006</div>
+				</form>
+			</div>
 		</ul>
-		<div id="addBoard">Create new board...</div>
-		<div id="addBoardDiv">
-			<form id="boardForm"">
-				<input type ="text" id="boardInput" placeholder="Add a board..." autocomplete="off">
-				<input type = "submit" value="Create" id="boardSubmit">
-				<div id="closeBoardForm">&#10006</div>
-			</form>
-		</div>
+
 	</div>
 
 <%- include('footer', {script: "javascripts/boards.js"}); %>
