@@ -6,22 +6,14 @@ $(function() {
 	boardList = $('#boards');
 	boardMenu = $('#boardMenuList');
 	loadData();
-
-
-
 	$('#closeBoardForm').click(closeBoardForm);
-
+ 	$('#addBoard').click(showBoardForm);
+ 	$('#boardSubmit').click(submitInput);
 	$('#boardForm').submit(function(e) {
 		event.preventDefault();
 		return false;
 	});
-
-	$('#boardSubmit').click(submitInput);
-
 	boardList.on('click', 'li', navigateToBoard);
-
- 	$('#addBoard').click(showBoardForm);
-
 });
 
 var showBoardForm = function() {
@@ -47,7 +39,6 @@ var loadMainList = function() {
 		var listLi = createBoard(listIndex);
 		$('#addBoard').before(listLi);
 	}
-
 }
 
 

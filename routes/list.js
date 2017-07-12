@@ -7,7 +7,6 @@ var Card = require('../models/card');
 
 
 router.get('/:bid', function(req, res, next) {
-	console.log(req.params.bid);
 	List.find({bid: req.params.bid}, function(err, lists) {
 		res.json(lists);
 	});

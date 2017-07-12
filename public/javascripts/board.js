@@ -2,24 +2,31 @@ var lol;
 var mainList;
 var bid = (window.location.href).split('/').pop();
 var board;
+var socket;
 $(function() {
 	lol = $('#outerList');
 	loadData();
+	socket = io();
+	socket.emit('joinRoom', bid);
 
-
-	$('#listForm').submit(function(e) {
+	$('#listForm').submit(function(event) {
 		event.preventDefault();
 		return false;
 	});
-	$('.cardForm').submit(function(e) {
+	$('.cardForm').submit(function(event) {
 		event.preventDefault();
 		return false;
 	});
+	$('#usersForm').submit(function(event) {
+		event.preventDefault();
+		return false;
+	})
 
 	lol.on('click', '.deleteList', deleteList);
 	lol.on('click', '.cardList li', showModal);
 	lol.on('click', '.addCard', showCardInput);
 	lol.on('click', '.submitCard', submitCard);
+	lol.on('click', '.closeCardForm', closeCardForm);
 
 	$('#addListSpan').click(showInput);
 	$('#listSubmit').click(submitInput);
@@ -30,6 +37,9 @@ $(function() {
 	$('#labelDiv ul li').click(addLabels);
 	$('#closeListForm').click(closeListForm);
 	$('#saveComment').click(saveComment);
+	$('#addUsersButton').click(toggleAddUsers);
+	$('#userSubmit').click(addUser);
+	$('#saveDesc').click(saveDesc);
 
 	lol.on('click', '.cardForm', function(event) {
 		event.stopPropagation();
@@ -47,7 +57,6 @@ $(function() {
 
 	});
 
-	lol.on('click', '.closeCardForm', closeCardForm);
 
 
 	$(document).ready(function() {
@@ -57,6 +66,34 @@ $(function() {
 
 	})
 
+
+	socket.on('cardAddReceived', function(cardInfo) {
+		var listIndex = cardInfo.listIndex;
+		var json = cardInfo.json;
+		mainList[listIndex] = json;
+		loadMainList();
+		console.log('card was added');
+	});
+
+	socket.on('cardDeleteReceived', function(cardInfo) {
+		var listIndex = cardInfo.listIndex;
+		var cardIndex = cardInfo.cardIndex;
+		mainList[listIndex].cards.splice(cardIndex, 1);
+		loadMainList();
+		console.log('card was deleted!');
+	})
+
+	socket.on('addListReceived', function(json) {
+		mainList.push(json);
+		var listLi = createList(mainList.length-1);
+		lol.append(listLi);
+		console.log('list was added!')
+	})
+
+	socket.on('deleteListReceived', function(listIndex) {
+		mainList.splice(listIndex, 1);
+		loadMainList();
+	})
 });
 
 var loadData = function() {
@@ -124,7 +161,7 @@ var createList = function(listIndex) {
 }
 
 //Shows input box after clicking on the 'Add a list...' button
-var showInput = function() {
+var showInput = function(event) {
 	$('#addListSpan').css("display", "none");
 	$('#addList').css("display", "inline-block");
 	event.stopPropagation();
@@ -154,6 +191,7 @@ var addList = function(listTitle) {
 		mainList.push(json);
 		var listLi = createList(mainList.length-1);
 		lol.append(listLi);
+		socket.emit('addList', json);
 	});
 }
 
@@ -213,6 +251,11 @@ var addCard = function(title, listIndex) {
 	.done(function(json) {
 		mainList[listIndex] = json;
 		loadMainList();
+		var cardInfo = {
+			listIndex: listIndex, 
+			json: json
+		}
+		socket.emit('addCard', cardInfo);
 	});
 }
 
@@ -223,7 +266,12 @@ var showModal = function(event) {
 	var cardIndex = $(eventLi).attr('data-cardindex');
 	var card = mainList[listIndex].cards[cardIndex];
 	$('#cardTitle').html(card.title);
-	$('#desc').html(card.description);
+	$('#author').html('Author: ' + card.author);
+	if(card.description == "") {
+		$('#addDescDiv').css('display', 'block');
+	} else {
+		$('#desc').html(card.description);
+	}
 	$('#cardModal').css('display', 'block');
 	$('#card').css('display','block');
 	$('#card').attr('data-cardindex', cardIndex);
@@ -250,7 +298,7 @@ var deleteList = function(event) {
 	.done(function() {
 		mainList.splice(listIndex, 1);
 		loadMainList();
-
+		socket.emit('deleteList', listIndex);
 	});
 }
 
@@ -269,6 +317,11 @@ var deleteCard = function(event) {
 		mainList[listIndex].cards.splice(cardIndex, 1);
 		loadMainList();
 		hideModal();
+		var cardInfo = {
+			listIndex: listIndex, 
+			cardIndex: cardIndex
+		}
+		socket.emit('deleteCard', cardInfo);
 	})
 }
 
@@ -342,7 +395,6 @@ var saveComment = function() {
 		$('#commentInput').val('');
 		var user = $('#user').html();
 		var datetime = new Date(); 
-
 		var listIndex = $('#card').attr('data-listindex');
 		var cardIndex = $('#card').attr('data-cardindex');
 		var card = mainList[listIndex].cards[cardIndex];
@@ -389,4 +441,78 @@ var getBoard = function() {
 		board = json
 		$('#boardName').html(board.title);
 	});
+}
+
+var toggleAddUsers = function() {
+	if($('#addUsers').css('display') === 'none') {
+		loadCurrentUsers();
+		$('#addUsers').css('display', 'inline-block'); 
+	} 
+	else {
+		$('#addUsers').css('display', 'none');
+	}
+}
+
+
+var addUser = function() {
+	var username = $('#userInput').val();
+	if(username != '') {
+		$.ajax({
+			url: "http://localhost:3000/boards/" + bid + "/user",
+			data: {
+				username: username
+			},
+			type: "POST"
+		}).done(function(res) {
+			if(res == '') {
+				//user was not added
+				alert('Username does not exist');
+			} 
+			else if(res == 'in') {
+				alert('User is already a member of the board');
+			}
+			else {
+				toggleAddUsers();
+			}
+		});
+	}
+}
+
+var loadCurrentUsers = function() {
+	var userList = $('#currentUsers');
+	userList.html('');
+	$.ajax({
+		url: "http://localhost:3000/boards/" + bid + "/user",
+		type: "GET"
+	}).done(function(users) {
+		$.each(users, function(i, user) {
+			var userLi = $('<li/>').html(user);
+			userList.append(userLi);
+		});
+	})
+}
+
+
+
+var saveDesc = function() {
+	var desc = $('#descInput').val();
+	if(desc != '') {
+		$('#descInput').val('');
+		var user = $('#user').html();
+		var listIndex = $('#card').attr('data-listindex');
+		var cardIndex = $('#card').attr('data-cardindex');
+		var card = mainList[listIndex].cards[cardIndex];
+		card.description = desc;
+		var listID = mainList[listIndex]._id;
+		var cardID = mainList[listIndex].cards[cardIndex]._id;
+		$.ajax({
+			url: "http://localhost:3000/list/" + listID + "/card/" + cardID, 
+			data: card,
+			type: "PATCH"
+		})
+		.done(function(){
+			$('#addDescDiv').css('display', 'none');
+			$('#desc').html(desc);
+		});
+	}
 }

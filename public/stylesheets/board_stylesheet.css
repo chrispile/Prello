@@ -8,10 +8,94 @@ body {
 
 
 /*Board Name*/
-#boardName {
+
+#boardNameDiv {
+	display: block;
 	color: #ffffff;
-	position: relative;
 	margin: 70px 0 10px 30px;
+	height: 40px;
+}
+#boardName {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+#addUsersButton {
+	border-radius: 5px;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+#addUsersButton:hover {
+	background-color: #006699;
+}
+
+#addUsers{
+	display: none;
+	border-radius: 5px;
+	width: 315px;
+	font-size: 16px;
+	border: none;
+	text-align:left;
+	vertical-align: top;
+}
+
+
+#usersForm {
+	display: inline-block;
+	width: 100%;
+	background-color: #e2e4e6;
+	height: 34px;
+}
+
+#userInput {
+	border:none;
+	padding-left: 5px;
+	margin: 0;
+	width: 220px;
+	margin: 5px 10px;
+	position: absolute;
+	height: 20px;
+	border-radius: 5px;
+	font-size: 16px;
+	background-color: #d1d1d1;
+}
+
+#userSubmit {
+	display: inline-block;
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 245px;
+	border: none;
+	font-size: 12px;
+	padding: 4px 15px;
+	font-weight: bold;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: #579547;
+}
+
+#currentUsers {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#currentUsers li {
+	display: inline;
+	margin: 10px 5px;
+	background-color: #006699;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#userListTitle {
+	display: inline;
 }
 
 /*List of lists*/
@@ -65,12 +149,7 @@ body {
 	background-color: #e2e4e6;
 }
 
-#newList {
-	z-index: 102;
-	background-color:pink;
-	width: 200px;
-	margin: 0 auto;
-}
+
 
 #addListSpan {
 	color: #a4cae0;
@@ -131,7 +210,7 @@ form {
 	background-color: #d1d1d1;
 }
 
-#listSubmit, #cardSubmit{
+#listSubmit, #cardSubmit {
 	display: block;
 	position: absolute;
 	margin-top: 45px;
@@ -183,7 +262,7 @@ form {
 	margin-top: 5px;
 }
 
-.closeCardForm, #closeListForm{
+.closeCardForm, #closeListForm, #closeUserForm{
 	display:inline-block;
 	position: absolute;
 	margin-top: 44px;
@@ -192,7 +271,7 @@ form {
 	color: #aaaaaa;
 }
 
-.closeCardForm:hover, .deleteList:hover, #closeListForm:hover{
+.closeCardForm:hover, .deleteList:hover, #closeListForm:hover, #closerUserForm:hover{
 	color: #363636;
 }
 
@@ -281,35 +360,15 @@ form {
 }
 
 #card h6 {
-	margin: 0;
+	margin: 8px 0;
 }
 
-/*Members*/
-#membersList {
-	display: inline-flex;
-	width: 100%;
-	padding: 0;
-	margin: 5px 0 10px 0;
-	list-style-type: none;
-}
 
-.member:first-child {
-	margin-left: 0;
-}
-
-.member {
-	width: 30px;
-	height: 30px;
-	background-color: pink;
-	text-align: center;
-	vertical-align: text-top;
-	margin: 0 5px;
-}
 
 /*Description*/
 #desc {
 	font-size: 14px;
-	margin: 5px 0 10px 0;
+	margin: 5px 0 10px 10px;
 }
 
 /*Comments*/
@@ -435,7 +494,7 @@ form {
 	margin-right: 4px;
 }
 
-#commentInput {
+#commentInput, #descInput {
 	overflow: hidden;
 	word-wrap: break-word;
 	height: 75px;
@@ -445,7 +504,7 @@ form {
 	border-radius: 5px;
 }
 
-#saveComment {
+#saveComment, #saveDesc {
 	margin-top: 10px;
 	border-style: none;
 	background-color: #61bd4f;
@@ -466,7 +525,7 @@ form {
 	list-style-type: none;
 }
 
-#saveComment:hover {
+#saveComment:hover, #saveDesc:hover {
 	background-color: #3a722f;
 }
 
@@ -492,4 +551,9 @@ form {
 	margin-left: 10px;
 	display: inline-block;
 	font-size: 12px;
+}
+
+
+#addDescDiv {
+	display: none;
 }

@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 	var alreadyExists = Users.findOne({username: req.body.username}, function(err, user) {
-		console.log(user);
 		if(user == null) {
 			var newUser = new Users(
 			{

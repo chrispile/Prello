@@ -1,7 +1,21 @@
 <%- include('header', {title: title, style: '/stylesheets/board_stylesheet.css', username: username}); %>
 
+<script src="/socket.io/socket.io.js"></script>
+
+
 <!-- Board Name -->
- 	<h3 id="boardName"></h3>
+	<div id="boardNameDiv"> 
+	 	<div id="boardName"></div>
+	 	<div id="addUsersButton">···</div>
+ 		<div id="addUsers">
+ 			<form id="usersForm">
+	 			<input type="text" id="userInput" placeholder="Enter username to add..." autocomplete="off">
+		 		<input type="submit" value="Add" id="userSubmit">
+ 			</form>
+ 			<div id="userListTitle">Board Members:</div>
+ 			<ul id="currentUsers"></ul>
+ 		</div>
+ 	</div>
 
 <!-- Boards -->
  	<div id="listDiv">
@@ -20,8 +34,7 @@
  	<div id="cardModal"> 	</div>
 	<div id="card">
  		<h3 id = "cardTitle"></h3>
- 		<h6>Members</h6>
- 		<ul id="membersList"></ul>
+ 		<h6 id="author"></h6>
  		<h6>Labels</h6>
  		<ul id="labels"></ul>
  		<div id="addLabelsDiv">
@@ -42,6 +55,10 @@
  		</div>
  		<h6>Description</h6>
  		<p id="desc"></p>
+ 		<div id="addDescDiv">
+	  		<textarea id ="descInput" placeholder="Write a description.."></textarea>
+	 		<button type="button" id="saveDesc">Save</button>
+	 	</div>
  		<h6>Comments</h6>
  		<textarea id ="commentInput" placeholder="Write a comment..."></textarea>
  		<button type="button" id="saveComment">Save</button>

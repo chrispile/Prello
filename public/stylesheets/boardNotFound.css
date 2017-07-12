@@ -1,0 +1,19 @@
+body {
+	font-family: Arial;
+	margin:0;
+}
+
+#error {
+	display: block;
+	margin-top: 100px;
+	text-align: center;
+	color: #5d5f63;
+}
+
+a {
+	color: #5d5f63;
+}
+
+a:hover{
+	color:#7c7c7c 
+}
