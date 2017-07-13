@@ -9,7 +9,7 @@ $(function() {
 	$('#closeBoardForm').click(closeBoardForm);
  	$('#addBoard').click(showBoardForm);
  	$('#boardSubmit').click(submitInput);
-	$('#boardForm').submit(function(e) {
+	$('#boardForm').submit(function(event) {
 		event.preventDefault();
 		return false;
 	});

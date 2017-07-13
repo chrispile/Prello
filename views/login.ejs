@@ -10,9 +10,9 @@
 		<h1>Log in to Prello</h1>
 		<form id="login" method="post" action="/login">
 			Username<br>
-			<input type = "text" name="username" placeholder="e.g.,hermione@spew.org.uk"><br>
+			<input type = "text" name="username" placeholder="e.g.,hermione@spew.org.uk" id="username" oninput="usernameExist(this)"><br>
 			Password<br>
-			<input type = "password" name="password" placeholder="e.g.,··········"><br>
+			<input type = "password" name="password" placeholder="e.g.,··········" oninput="checkCorrect(this)"><br>
 		</form>
 		<button type="submit" form="login" id="loginSubmit">Log In</button>
 		<a href = "http://localhost:3000/">Don't have an account? Sign up</a>
@@ -20,4 +20,4 @@
 
 
 
-<%- include('footer', {script: null}); %>
+<%- include('footer', {script: "/javascripts/login.js"}); %>

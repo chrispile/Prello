@@ -94,6 +94,11 @@ $(function() {
 		mainList.splice(listIndex, 1);
 		loadMainList();
 	})
+
+	socket.on('addLabelReceived', function(cardInfo) {
+		mainList[cardInfo.listIndex].cards[cardInfo.cardIndex] = cardInfo.card;
+		loadMainList();
+	})
 });
 
 var loadData = function() {
@@ -363,7 +368,13 @@ var addLabels = function() {
 		.done(function(){
 			$('#labelDiv').css('display', 'none');
 			updateCardLabels(listIndex, cardIndex);
-			loadMainList();	
+			loadMainList();
+			var cardInfo = {
+				listIndex: listIndex,
+				cardIndex: cardIndex,
+				card: card
+			}
+			socket.emit('addLabel', cardInfo);
 		});
 	}
 }

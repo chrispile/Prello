@@ -10,13 +10,13 @@
 		<h1>Create a Prello Account</h1>
 		<form id="register" method="post" action="/users">
 			Username<br>
-			<input type = "text" name="username" placeholder="e.g., Calvin and Hobbes" required><br>
+			<input type = "text" name="username" placeholder="e.g., Calvin and Hobbes" oninput="usernameTaken(this)" required><br>
 			Email<br>
 			<input type = "email" name="email" placeholder="e.g.,calvin@gross.club" required><br>
 			Password<br>
 			<input type = "password" id = 'password1' name="password" placeholder="e.g.,··········" required><br>
 			Confirm Password<br>
-			<input type = "password" id="password2" placeholder="e.g.,··········" required><br>
+			<input type = "password" id="password2" placeholder="e.g.,··········" oninput="checkPassword(this)" required><br>
 		</form>
 		<button type="submit" form="register" id="registerSubmit">Create New Account</button>
 		<a href = "http://localhost:3000/login">Already have an account? Log in</a>

@@ -28,6 +28,9 @@ module.exports = {
             	socket.broadcast.to(room).emit('deleteListReceived', listIndex);
             });
 
+            socket.on('addLabel', function(cardInfo) {
+            	socket.broadcast.to(room).emit('addLabelReceived', cardInfo);
+            })
 
 	    });
 

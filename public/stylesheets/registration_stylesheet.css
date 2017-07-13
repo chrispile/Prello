@@ -54,3 +54,11 @@ button {
   display: block;
   margin-bottom: 10px;
 }
+
+.alert {
+	padding: 20px;
+	background-color: #eb5a46;
+	color: white;
+	opacity: 1;
+	margin-bottom: 15px;
+}
