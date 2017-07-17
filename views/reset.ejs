@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> | Prello </title>
+    <link rel='stylesheet' href= 'stylesheets/forgotpassword_stylesheet.css' />
+ </head>
+
+<body>
+	<div id ="forogotdiv">
+		<h1>Find Your Account</h1>
+		<form id="resetPass" action="/reset" method="post">
+			<h5>Please enter your email to reset your password</h6>
+			<input type="text" name="email" oninput="emailExists(this)" required>
+		</form>
+		<button type="submit" form="resetPass" id="resetSubmit">Reset Password</button>
+	</div>
+
+
+<%- include('footer', {script: "/javascripts/resetform.js"}); %>

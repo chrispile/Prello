@@ -5,6 +5,7 @@ var permissionsCheck = require('../permissionsCheck');
 
 var user = require('../models/user');
 var io = require('../socketInit');
+var Sha1 = require('../Sha1');
 
 
 router.get('/', function(req, res, next) {
@@ -12,25 +13,26 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login'});
+  res.render('login', { title: 'Login', alert: 'none'});
 });
 
 
 router.post('/login', function(req, res) {
-  user.findOne({ username: req.body.username }, function(err, user) {
-    if (!user) {
- 		res.render('login', { title: 'Invalid email or password'});
-    } 
-    else {
-      if (req.body.password === user.password) {
-        req.session.user = user;
-        res.redirect('/dashboard');
-      } 
-      else {
- 		res.render('login', { title: 'Invalid email or password'});
-      }
-    }
-  });
+    user.findOne({ username: req.body.username }, function(err, user) {
+        if (!user) { //user does not exist
+            res.render('login', { title: 'Invalid email or password', alert:'none'});
+        } 
+        else {
+            var encryptPass = Sha1.hash(req.body.password);
+            if (encryptPass === user.password) { 
+                req.session.user = user;
+                res.redirect('/dashboard');
+            } 
+            else { //passwords do not match
+                res.render('login', { title: 'Invalid email or password', alert: 'block'});
+            }
+        }
+    });
 });
 
 router.get('/dashboard', requireLogin, function(req, res) {
@@ -46,7 +48,9 @@ router.get('/logout', function(req, res) {
   res.redirect("/");
 });
 
-
+router.get('/reset', function(req, res) {
+  res.render('reset', { title: 'Forgot Password'})
+});
 
 module.exports = router;
 

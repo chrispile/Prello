@@ -1,0 +1,28 @@
+html, body {
+	height: 100%;
+}
+
+html {
+	display: table;
+	margin: auto;
+}
+
+body {
+	font-family: Arial;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+
+h1 {
+  color: #434444;
+  margin: 16px 0;
+}
+
+
+
+#emaildiv {
+	margin: 10 auto;
+	width: 500px;
+}
+

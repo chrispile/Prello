@@ -18,18 +18,3 @@ function usernameExist(input) {
 		}
 	}
 }
-
-function checkCorrect(input) {
-	var password = input.value;
-	var username = $('#username').val();
-	input.setCustomValidity('');
-
-	for(var i = 0; i < users.length; i++) {
-		var user = users[i];
-		if(user.username == username) {
-			if(user.password != password) {
-				input.setCustomValidity("The password you entered is incorrect.")
-			}
-		}
-	}
-}

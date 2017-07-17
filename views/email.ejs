@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> | Prello </title>
+    <link rel='stylesheet' href= 'stylesheets/email_stylesheet.css'/>
+ </head>
+
+<body>
+	<div id ="emaildiv">
+		<h1>Forgot your password?</h1>
+		<p>We've receieved a request to reset the password for this email address.</p>
+		<p>To reset your password please click on this link: <a href= <%= resetLink %>><%= resetLink %></a></p>
+	</div>
+
+
+<%- include('footer', {script: null }); %>

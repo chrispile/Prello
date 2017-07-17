@@ -13,6 +13,7 @@ var list = require('./routes/list');
 var user = require('./models/user');
 var session = require('client-sessions');
 var boards = require('./routes/boards');
+var reset = require('./routes/reset');
 
 
 mongoose.connect('mongodb://localhost/test');
@@ -69,6 +70,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/list', list);
 app.use('/boards', boards);
+app.use('/reset', reset);
 
 
 

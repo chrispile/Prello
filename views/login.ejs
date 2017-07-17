@@ -12,10 +12,17 @@
 			Username<br>
 			<input type = "text" name="username" placeholder="e.g.,hermione@spew.org.uk" id="username" oninput="usernameExist(this)"><br>
 			Password<br>
-			<input type = "password" name="password" placeholder="e.g.,··········" oninput="checkCorrect(this)"><br>
+			<input type = "password" name="password" placeholder="e.g.,··········" ><br>
 		</form>
 		<button type="submit" form="login" id="loginSubmit">Log In</button>
-		<a href = "http://localhost:3000/">Don't have an account? Sign up</a>
+		<a href = "http://localhost:3000/">Don't have an account? Sign up</a><br>
+		<a href = "http://localhost:3000/reset">Forgot your password?</a>
+
+		<div id="alert" style="display: <%= alert %>;">
+			<span id="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+			Password was incorrect! Please try again. 
+		</div>
+
 	</div>
 
 
